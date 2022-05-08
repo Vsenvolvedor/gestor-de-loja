@@ -38,7 +38,7 @@ const MainSectionControl = () => {
         Tenha maior controle
       </H2Style>
       <SectionStyle>
-        <ImgStyled src={appImage}/>
+        <ImgStyled src={appImage} alt='Desenho do aplicativo'/>
         <ul>
           {itemsLi.map((item, index) => {
             return (
