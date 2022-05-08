@@ -1,0 +1,57 @@
+import styled from 'styled-components'
+import { theme } from '../../../theme/theme'
+import  { SectionStyle, H2Style } from './SectionStyle'
+import appImage from '../../../assets/appimg.jpg'
+
+const itemsLi = ['Organize seus produtos','Fácil de usar','Adicione foto','Customize categorias']
+
+const LiStyled = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 1.8rem;
+  font-family: ${theme.fontFamily.second};
+  color: ${theme.colors.color05};
+  margin-bottom: 1.5rem;
+  list-style: none;
+  &::before {
+    content: '';
+    display: block;
+    background-color: ${theme.colors.color04};
+    border-radius: 4px;
+    width: 30px;
+    height: 4px;
+  }
+`
+
+const ImgStyled = styled.img`
+  box-shadow: 0 0 0 2px ${theme.colors.color05};
+  border-radius: 2px;
+  width: 340px;
+`
+
+const MainSectionControl = () => {
+
+  return (
+    <>
+      <H2Style>
+        Tenha maior controle
+      </H2Style>
+      <SectionStyle>
+        <ImgStyled src={appImage}/>
+        <ul>
+          {itemsLi.map((item, index) => {
+            return (
+              <LiStyled key={index}>
+                {item}
+              </LiStyled>
+            )
+          })}
+        </ul>
+      </SectionStyle>
+    </>
+
+  )
+}
+
+export default MainSectionControl
