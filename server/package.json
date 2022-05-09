@@ -21,6 +21,7 @@
   },
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
+    "createDB":"npx ts-node ./src/db/init.ts",
     "build": "tsc --build"
   },
   "keywords": [],
