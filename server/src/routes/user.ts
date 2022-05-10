@@ -1,6 +1,7 @@
 import express from 'express'
 import { createUser } from '../controllers/createUser'
 import { getUserData } from '../controllers/getUserData'
+import { loginUser } from '../controllers/loginUser'
 
 export const routes = express.Router()
 
@@ -24,10 +25,22 @@ routes.post('/user/create', async (req,res) => {
   }
 })
 
-routes.post('/user/login', (req,res) => {
-  const { username, password } = req.body
+routes.post('/user/login', async (req,res) => {
+  try {
+    const { username, password } = req.body
  
-  res.status(200).send('usuario logado')
+    const response = await loginUser(username,password)
+  
+    if(response) {  
+      res.status(response.status).send(response)
+    } else throw new Error()
+  
+  } catch(err) {
+    res.status(500).send({
+      status: 500,
+      message: 'Não foi possivel resgatar os dados'
+    })
+  }
 })
 
 
@@ -35,7 +48,7 @@ routes.get('/user/data', async (req,res) => {
   try {
     const token = req.headers.authorization?.replace('Bearer ', '')
     if(!token || token.startsWith('Bearer')) throw new Error()
-   
+    
     const response = await getUserData(token)
 
     if(response) {
@@ -43,10 +56,10 @@ routes.get('/user/data', async (req,res) => {
       res.status(200).send(response)
     } else throw new Error()
 
-  } catch(err) {
-    res.status(500).send({
-      status: 500,
-      message: 'Não foi possivel resgatar os dados'
+  } catch(err:any) {
+    res.status(403).send({
+      status: 403,
+      message: err.message || 'Não foi possivel resgatar os dados'
     })
   }
   

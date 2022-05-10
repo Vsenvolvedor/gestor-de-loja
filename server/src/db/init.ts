@@ -7,7 +7,7 @@ const initDb = {
       CREATE TABLE users(
         id INT NOT NULL PRIMARY KEY,
         username TEXT,
-        storeName TEXT,
+        storename TEXT,
         password TEXT
       )
     `)

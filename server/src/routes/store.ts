@@ -15,7 +15,7 @@ routes.post('/store/product/create', (req,res) => {
 })
 
 routes.delete('/store/product/delete', (req,res) => {
-  const { nome, value, qtd, categ, image } = req.body
+  const { id } = req.body
  
   res.status(200).send('usuario infos')
 })

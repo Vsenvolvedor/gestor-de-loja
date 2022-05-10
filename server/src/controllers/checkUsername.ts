@@ -10,4 +10,5 @@ export async function checkUsername(username:string) {
     } 
   })
   return exist
+  
 }
