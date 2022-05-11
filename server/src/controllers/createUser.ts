@@ -1,4 +1,4 @@
-import Database from '../db/config'
+import Database from '../../db/config'
 import { checkUsername } from '../validation/checkUsername';
 import createId from '../helpers/createId';
 import { createResponse } from '../helpers/createResponse';

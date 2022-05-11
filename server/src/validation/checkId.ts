@@ -1,4 +1,4 @@
-import Database from '../db/config'
+import Database from '../../db/config'
 
 export async function checkId(id:number) {
   const db = await Database
