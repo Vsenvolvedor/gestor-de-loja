@@ -1,7 +1,7 @@
 import Database from '../db/config'
-import { checkUsername } from './checkUsername';
-import createId from './createId';
-import { createResponse } from './createResponse';
+import { checkUsername } from '../validation/checkUsername';
+import createId from '../helpers/createId';
+import { createResponse } from '../helpers/createResponse';
 
 interface createUserProps {
   storename: string;
@@ -33,10 +33,10 @@ export async function createUser({storename, username, password}:createUserProps
     )
     `)
 
-    return createResponse({status:200, message:'Usuario criado'})
+    return createResponse(200,'Usuario criado')
 
   } catch(err) {
     console.log(err)
-    return createResponse({status:409, message:'Usuario já existe.'})
+    return createResponse(409, 'Usuario já existe.')
   } 
 }

@@ -1,8 +1,8 @@
-import { checkUsername } from "./checkUsername"
-import { checkPassword } from "./checkPassword"
-import { loginCheckUsers } from "./loginCheckUsers"
-import { createResponse } from "./createResponse"
-import { JsonToken } from "../jsonToken"
+import { checkUsername } from "../validation/checkUsername"
+import { checkPassword } from "../validation/checkPassword"
+import { checkLoginUsers } from "../validation/checkLoginUsers"
+import { createResponse } from "../helpers/createResponse"
+import { JsonToken } from "../helpers/jsonToken"
 
 export async function loginUser(usernameParams:string,passwordParams:string) {
   try {
@@ -11,7 +11,7 @@ export async function loginUser(usernameParams:string,passwordParams:string) {
 
     if(!usernameExist) throw new Error("Usuario não encontrado")
     if(!passwordExist) throw new Error("Senha incorreta")
-    const user = await loginCheckUsers(usernameParams,passwordParams)
+    const user = await checkLoginUsers(usernameParams,passwordParams)
     if(!user) throw new Error('Senha ou usuario incorretos')
     const {id, username, storename} = user
     const token = JsonToken.createToken({id,username,storename})
@@ -20,6 +20,6 @@ export async function loginUser(usernameParams:string,passwordParams:string) {
       token
     }
   } catch(err:any){
-    return createResponse({status:401, message: err.message})
+    return createResponse(401, err.message)
   }
 }

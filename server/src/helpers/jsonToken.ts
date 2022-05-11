@@ -1,4 +1,3 @@
-
 export class JsonToken {
   static createToken(object:object) {
     const jwt = require('jsonwebtoken')
