@@ -1,12 +1,35 @@
 import express from 'express'
 import { createProduct } from '../controllers/createProduct'
+import { deleteProduct } from '../controllers/deleteProduct'
 import { getProductData } from '../controllers/getProductData'
 import { createResponse } from '../helpers/createResponse'
 import { isLogged } from '../middleware/isLogged'
 
 export const routes = express.Router()
 
-routes.use('/api/product',isLogged)
+routes.use('/api/product', isLogged)
+
+routes.get('/api/product', async (req,res) => {
+  try {
+    const {search, limit, page} = req.query
+    const { ID } = res.locals.userData
+  
+    const response = await getProductData({
+      id: Number(ID),
+      search: search?.toString(),
+      limit: Number(limit),
+      page: Number(page)
+    })
+
+    if(response) {
+      res.status(response.status).json(response)
+    } else throw new Error('Nenhum produto foi encontrado.')
+  } catch(err:any) {
+    const response = createResponse(404, err.message)
+    res.status(response.status).json(response)
+  }
+  
+})
 
 routes.post('/api/product/create', async (req,res) => {
   try {
@@ -31,32 +54,13 @@ routes.post('/api/product/create', async (req,res) => {
   }
 })
 
-routes.get('/api/product', async (req,res) => {
-  try {
-    const {search, limit, page} = req.query
-    const { ID } = res.locals.userData
-  
-    const response = await getProductData({
-      id: Number(ID),
-      search: search?.toString(),
-      limit: Number(limit),
-      page: Number(page)
-    })
+routes.delete('/api/product/delete/:productId', async (req,res) => {
+  const { ID } = res.locals.userData
+  const { productId } = req.params
 
-    if(response) {
-      res.status(response.status).json(response)
-    } else throw new Error('Nenhum produto foi encontrado.')
-  } catch(err:any) {
-    const response = createResponse(404, err.message)
-    res.status(response.status).json(response)
-  }
-  
-})
+  const response = await deleteProduct(Number(ID), Number(productId))
 
-routes.delete('/api/product/delete', (req,res) => {
-  const { id } = req.body
- 
-  res.status(200).send('usuario infos')
+  res.status(response.status).json(response)
 })
 
 routes.put('/api/product/update', (req,res) => {
