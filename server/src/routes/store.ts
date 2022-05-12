@@ -1,7 +1,9 @@
 import express from 'express'
 import { createCateg } from '../controllers/createCateg'
 import { createProduct } from '../controllers/createProduct'
+import { deleteCateg } from '../controllers/deleteCateg'
 import { deleteProduct } from '../controllers/deleteProduct'
+import { getCategs } from '../controllers/getCategs'
 import { getProductData } from '../controllers/getProductData'
 import { createResponse } from '../helpers/createResponse'
 import { isLogged } from '../middleware/isLogged'
@@ -70,10 +72,19 @@ routes.delete('/api/product/delete/:productId', async (req,res) => {
 //   res.status(200).send('usuario infos')
 // })
 
-routes.get('/api/product/categ',(req,res) => {
-  const { ID } = res.locals.userData
+routes.get('/api/product/categ', async (req,res) => {
+  try {
+    const { ID } = res.locals.userData
 
-  res.status(200).send('lista de categoria')
+    const response = await getCategs(ID)
+  
+    if(response) {
+     res.status(response.status).json(response)
+    } else throw new Error()
+  } catch(err) {
+    return createResponse(400, 'Não foi possivel carregar as categorias')
+  }
+  
 })
 
 routes.post('/api/product/categ/create', async (req,res) => {
@@ -92,9 +103,17 @@ routes.post('/api/product/categ/create', async (req,res) => {
   
 })
 
-routes.delete('/api/product/categ/delete', (req,res) => {
-  const { ID } = res.locals.userData
-  const { name } = req.body
-
-  res.status(200).send('usuario infos')
+routes.delete('/api/product/categ/delete/:name', async (req,res) => {
+  try {
+    const { ID } = res.locals.userData
+    const { name } = req.params
+  
+    const response = await deleteCateg(ID, name)
+    if(response) {
+      res.status(response.status).json(response)
+    } else throw new Error()
+  } catch(err) {
+    res.status(400).send('Categoria não encontrada')
+  }
+ 
 })
