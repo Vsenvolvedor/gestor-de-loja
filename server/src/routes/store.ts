@@ -1,5 +1,7 @@
 import express from 'express'
 import { createProduct } from '../controllers/createProduct'
+import { getProductData } from '../controllers/getProductData'
+import { createResponse } from '../helpers/createResponse'
 import { isLogged } from '../middleware/isLogged'
 
 export const routes = express.Router()
@@ -24,20 +26,31 @@ routes.post('/api/product/create', async (req,res) => {
       res.status(response.status).json(response)
     } else throw new Error()
   } catch(err:any) {
-    res.status(400).json({
-      status: 400,
-      message: 'Não foi possivel criar o produto'
-    })
+    const response = createResponse(400, 'Não foi possivel criar o produto.')
+    res.status(response.status).json(response)
   }
 })
 
-routes.get('/api/product', (req,res) => {
-  // const {search, limit, page} = req.query
-  const { id } = res.locals.userData
-
+routes.get('/api/product', async (req,res) => {
+  try {
+    const {search, limit, page} = req.query
+    const { ID } = res.locals.userData
   
+    const response = await getProductData({
+      id: Number(ID),
+      search: search?.toString(),
+      limit: Number(limit),
+      page: Number(page)
+    })
 
-  res.status(200).send('usuario infos')
+    if(response) {
+      res.status(response.status).json(response)
+    } else throw new Error('Nenhum produto foi encontrado.')
+  } catch(err:any) {
+    const response = createResponse(404, err.message)
+    res.status(response.status).json(response)
+  }
+  
 })
 
 routes.delete('/api/product/delete', (req,res) => {
