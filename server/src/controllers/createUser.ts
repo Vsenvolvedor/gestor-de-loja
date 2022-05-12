@@ -1,4 +1,4 @@
-import Database from '../../db/config'
+import Database from '../db/config'
 import { checkUsername } from '../validation/checkUsername';
 import createId from '../helpers/createId';
 import { createResponse } from '../helpers/createResponse';
@@ -12,7 +12,7 @@ interface createUserProps {
 export async function createUser({storename, username, password}:createUserProps) {
   try {
     const db = await Database
-    const id = await createId()
+    const id = await createId('users')
     const userExist:boolean = await checkUsername(username)
     if(!id) return false
     if(userExist) {
@@ -20,7 +20,7 @@ export async function createUser({storename, username, password}:createUserProps
     }
     
     await db.run(`INSERT INTO users (
-      id,
+      ID,
       username,
       storeName,
       password

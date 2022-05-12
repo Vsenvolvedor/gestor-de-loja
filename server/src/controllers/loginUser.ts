@@ -13,8 +13,8 @@ export async function loginUser(usernameParams:string,passwordParams:string) {
     if(!passwordExist) throw new Error("Senha incorreta")
     const user = await checkLoginUsers(usernameParams,passwordParams)
     if(!user) throw new Error('Senha ou usuario incorretos')
-    const {id, username, storename} = user
-    const token = JsonToken.createToken({id,username,storename})
+    const {ID, username, storename} = user
+    const token = JsonToken.createToken({ID,username,storename})
     return {
       status:200,
       token

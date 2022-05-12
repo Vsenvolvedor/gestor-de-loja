@@ -3,6 +3,7 @@ import { createResponse } from '../helpers/createResponse'
 import { createUser } from '../controllers/createUser'
 import { getUserData } from '../controllers/getUserData'
 import { loginUser } from '../controllers/loginUser'
+import { isLogged } from '../middleware/isLogged'
 
 export const routes = express.Router()
 
@@ -41,15 +42,10 @@ routes.post('/api/user/login', async (req,res) => {
 })
 
 
-routes.get('/api/user/data', async (req,res) => {
+routes.get('/api/user/data', isLogged, async (req,res) => {
   try {
-    const token = req.headers.authorization?.replace('Bearer ', '')
-    if(!token || token.startsWith('Bearer')) throw new Error()
-    
-    const response = await getUserData(token)
-
+    const response = res.locals.userData
     if(response) {
-      res.header('Content-Type', 'application/json')
       res.status(200).json(response)
     } else throw new Error()
 

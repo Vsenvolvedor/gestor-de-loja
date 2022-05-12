@@ -5,24 +5,22 @@ const initDb = {
     const db = await Database
     await db.exec(`
       CREATE TABLE users(
-        id INT NOT NULL PRIMARY KEY,
+        ID INT NOT NULL PRIMARY KEY,
         username TEXT,
         storename TEXT,
         password TEXT
+      );
+      CREATE TABLE products(
+        ID INT NOT NULL PRIMARY KEY,
+        ownerID INT,
+        storename TEXT,
+        name TEXT,
+        value REAL,
+        categ TEXT,
+        quantity INT,
+        image TEXT
       )
     `)
-  //   await db.exec(`
-  //   CREATE TABLE products(
-  //     id INT,
-  //     owner TEXT,
-  //     store TEXT,
-  //     image TEXT,
-  //     name TEXT,
-  //     value INT,
-  //     categ TEXT,
-  //     quantity INT
-  //   )
-  // `)
   //   await db.exec(`
   //   CREATE TABLE categories(
   //     id INT,

@@ -1,4 +1,4 @@
-import Database from '../../db/config'
+import Database from '../db/config'
 
 export async function checkLoginUsers(username:string,password:string) {
   try {
