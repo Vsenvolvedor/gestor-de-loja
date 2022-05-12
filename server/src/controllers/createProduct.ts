@@ -48,7 +48,7 @@ export async function createProduct({
       )
       `)
   
-      return createResponse(200,'Produto criado')
+      return createResponse(201,'Produto criado')
     } else throw new Error('Passe todas as informações')
    
   } catch(err:any) {

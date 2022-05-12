@@ -1,13 +1,12 @@
-import { checkUsername } from "../validation/checkUsername"
-import { checkPassword } from "../validation/checkPassword"
 import { checkLoginUsers } from "../validation/checkLoginUsers"
 import { createResponse } from "../helpers/createResponse"
 import { JsonToken } from "../helpers/jsonToken"
+import { checkItemExists } from "../validation/checkItemExists"
 
 export async function loginUser(usernameParams:string,passwordParams:string) {
   try {
-    const usernameExist= await checkUsername(usernameParams)
-    const passwordExist = await checkPassword(passwordParams)
+    const usernameExist= await checkItemExists(usernameParams,'users','username')
+    const passwordExist = await checkItemExists(passwordParams,'users','password')
 
     if(!usernameExist) throw new Error("Usuario não encontrado")
     if(!passwordExist) throw new Error("Senha incorreta")

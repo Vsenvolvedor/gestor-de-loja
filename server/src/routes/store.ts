@@ -1,4 +1,5 @@
 import express from 'express'
+import { createCateg } from '../controllers/createCateg'
 import { createProduct } from '../controllers/createProduct'
 import { deleteProduct } from '../controllers/deleteProduct'
 import { getProductData } from '../controllers/getProductData'
@@ -63,26 +64,37 @@ routes.delete('/api/product/delete/:productId', async (req,res) => {
   res.status(response.status).json(response)
 })
 
-routes.put('/api/product/update', (req,res) => {
-  const { nome, value, qtd, categ, image } = req.body
+// routes.put('/api/product/update', (req,res) => {
+//   const { nome, value, qtd, categ, image } = req.body
  
-  res.status(200).send('usuario infos')
-})
-
-routes.post('/api/product/categ/create', (req,res) => {
-  const { categ } = req.body
- 
-  res.status(200).send('usuario infos')
-})
+//   res.status(200).send('usuario infos')
+// })
 
 routes.get('/api/product/categ',(req,res) => {
-  const { categ } = req.body
- 
+  const { ID } = res.locals.userData
+
   res.status(200).send('lista de categoria')
 })
 
+routes.post('/api/product/categ/create', async (req,res) => {
+  try {
+    const { ID, storename } = res.locals.userData
+    const { name } = req.body
+  
+    const response = await createCateg()
+
+    if(response) {
+      res.status(response.status).json(response)
+    } else throw new Error()
+  } catch(err) {
+    return createResponse(400, 'Não foi possivel criar a categoria')
+  }
+  
+})
+
 routes.delete('/api/product/categ/delete', (req,res) => {
-  const { categ } = req.body
- 
+  const { ID } = res.locals.userData
+  const { name } = req.body
+
   res.status(200).send('usuario infos')
 })

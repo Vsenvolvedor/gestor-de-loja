@@ -19,16 +19,13 @@ const initDb = {
         categ TEXT,
         quantity INT,
         image TEXT
+      );
+      CREATE TABLE categories(
+        ownerID INT,
+        store TEXT,
+        name TEXT NOT NULL PRIMARY KEY
       )
     `)
-  //   await db.exec(`
-  //   CREATE TABLE categories(
-  //     id INT,
-  //     owner TEXT,
-  //     store TEXT,
-  //     type TEXT,
-  //   )
-  //   `)
   }
 }
 

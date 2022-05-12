@@ -1,7 +1,7 @@
 import Database from '../db/config'
-import { checkUsername } from '../validation/checkUsername';
 import createId from '../helpers/createId';
 import { createResponse } from '../helpers/createResponse';
+import { checkItemExists } from '../validation/checkItemExists';
 
 interface createUserProps {
   storename: string;
@@ -13,7 +13,7 @@ export async function createUser({storename, username, password}:createUserProps
   try {
     const db = await Database
     const id = await createId('users')
-    const userExist:boolean = await checkUsername(username)
+    const userExist:boolean = await checkItemExists(username,'users','username')
     if(!id) return false
     if(userExist) {
      throw new Error()
