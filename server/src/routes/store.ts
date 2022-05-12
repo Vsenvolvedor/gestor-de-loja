@@ -81,7 +81,7 @@ routes.post('/api/product/categ/create', async (req,res) => {
     const { ID, storename } = res.locals.userData
     const { name } = req.body
   
-    const response = await createCateg()
+    const response = await createCateg(ID, storename, name)
 
     if(response) {
       res.status(response.status).json(response)
