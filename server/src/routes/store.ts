@@ -5,6 +5,7 @@ import { deleteCateg } from '../controllers/deleteCateg'
 import { deleteProduct } from '../controllers/deleteProduct'
 import { getCategs } from '../controllers/getCategs'
 import { getProductData } from '../controllers/getProductData'
+import { updateProduct } from '../controllers/updateProduct'
 import { createResponse } from '../helpers/createResponse'
 import { isLogged } from '../middleware/isLogged'
 
@@ -66,11 +67,27 @@ routes.delete('/api/product/delete/:productId', async (req,res) => {
   res.status(response.status).json(response)
 })
 
-// routes.put('/api/product/update', (req,res) => {
-//   const { nome, value, qtd, categ, image } = req.body
- 
-//   res.status(200).send('usuario infos')
-// })
+routes.put('/api/product/update', async (req,res) => {
+  try {
+    const { ID:ownerID } = res.locals.userData
+    const { ID , name, value, qtd, categ, image } = req.body
+
+    const response = await updateProduct({
+      ID,
+      ownerID,
+      name: name ? name : false,
+      value: value ? value : false,
+      quantity: qtd ? qtd : false,
+      categ: categ ? categ : false,
+      image: image ? image : false
+    })
+    if(response) {
+      res.status(200).send('Dados atualizados')
+    } else throw new Error()
+  } catch(err) {
+    res.status(404).send('Não foi possivel atualizar os dados')
+  }
+})
 
 routes.get('/api/product/categ', async (req,res) => {
   try {
