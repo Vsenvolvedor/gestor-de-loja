@@ -9,7 +9,7 @@ const LiStyled = styled.li`
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   font-family: ${theme.fontFamily.second};
   color: ${theme.colors.color05};
   margin-bottom: 1.5rem;
@@ -22,12 +22,15 @@ const LiStyled = styled.li`
     width: 30px;
     height: 4px;
   }
+  @media (max-width: 360px) {
+    font-size: 2rem;
+  }
 `
 
 const ImgStyled = styled.img`
   box-shadow: 0 0 0 2px ${theme.colors.color05};
   border-radius: 2px;
-  width: 340px;
+  width: 450px;
 `
 
 const MainSectionControl = () => {

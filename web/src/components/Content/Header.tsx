@@ -10,8 +10,16 @@ const HeaderDiv = styled.header`
   justify-content: space-between;
   align-items: center;
   background-color: ${theme.colors.color01};
-  padding: .5rem 3rem;
+  padding: 1.5rem 9rem;
   box-shadow: 0 2px 4px rgba(0,0,0,.2);
+  margin-bottom: 6rem;
+  @media(max-width: 960px) {
+    padding: 1.5rem 3rem;
+  }
+  @media(max-width: 490px) {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 `
 
 const UlStyled = styled.ul`

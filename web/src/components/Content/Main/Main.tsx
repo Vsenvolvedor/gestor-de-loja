@@ -12,7 +12,7 @@ const Main = () => {
       <MainSectionAbout/>
       <MainSectionControl />
       <Link to='/criar'>
-        <Button marginConfig="0 auto 3rem auto">
+        <Button marginConfig="3rem auto 0 auto">
           cadastrar-se
         </Button>
       </Link>

@@ -4,15 +4,21 @@ import { theme } from '../../../theme/theme'
 import { SectionStyle }from './SectionStyle'
 
 const PStyle = styled.p`
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   font-family: ${theme.fontFamily.second};
   color: ${theme.colors.color05};
-  width: 300px;
+  max-width: 400px;
   margin-bottom: 1.5rem;
+  @media (max-width: 960px) {
+    max-width: 500px;
+  }
+  @media (max-width: 360px) {
+    font-size: 2rem;
+  }
 `
 
 const ImgStyle = styled.img`
-  width: 320px;
+  min-width: 200px;
 `
 
 const MainSectionAbout = () => {
@@ -26,7 +32,9 @@ const MainSectionAbout = () => {
           A gestoja ajuda a você a organizar sua loja.
         </PStyle>
       </div>
-      <ImgStyle src={lojaImage} alt='Desenho de loja'/>
+      <div>
+        <ImgStyle src={lojaImage} alt='Desenho de loja'/>
+      </div>
     </SectionStyle>
   )
 }

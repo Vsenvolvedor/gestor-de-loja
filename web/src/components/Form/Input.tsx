@@ -3,7 +3,7 @@ import { theme } from "../../theme/theme";
 
 const LabelStyled = styled.label`
   display: block;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-family: ${theme.fontFamily.second};
   color: ${theme.colors.color05};
   margin-bottom: .5rem;
@@ -13,14 +13,14 @@ const InputStyled = styled.input`
   display: block;
   width: 100%;
   background-color: ${theme.colors.color02};
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-family: ${theme.fontFamily.second};
   color: ${theme.colors.color05};
   box-shadow: 1px 1px 2px rgba(0,0,0,.1);
   border: 1px solid ${theme.colors.color03};
   border-radius: 2px;
-  padding: .2rem .5rem;
-  margin-bottom: .5rem;
+  padding: .5rem 1rem;
+  margin-bottom: 1.5rem;
   transition: .2s;
   &:hover,
   &:focus {

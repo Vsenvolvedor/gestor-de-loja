@@ -1,8 +1,7 @@
 import styled from "styled-components"
 
 const LogoSvg = styled.svg`
-  max-width: 100%;
-  width: 80px;
+  width: 120px;
   padding-bottom: 0.5rem;
   height: auto;
 `

@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { theme } from "../../../theme/theme"
 
 const H1Styled = styled.h1`
-  font-size: 1.6rem;
+  font-size: 2.4rem;
   font-family: ${theme.fontFamily.second};
   font-weight: 400;
   color: ${theme.colors.color05};
