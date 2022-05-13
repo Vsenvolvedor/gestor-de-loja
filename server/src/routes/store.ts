@@ -5,6 +5,7 @@ import { deleteCateg } from '../controllers/deleteCateg'
 import { deleteProduct } from '../controllers/deleteProduct'
 import { getCategs } from '../controllers/getCategs'
 import { getProductData } from '../controllers/getProductData'
+import { getSingleProduct } from '../controllers/getSingleProduct'
 import { updateProduct } from '../controllers/updateProduct'
 import { createResponse } from '../helpers/createResponse'
 import { isLogged } from '../middleware/isLogged'
@@ -35,7 +36,23 @@ routes.get('/api/product', async (req,res) => {
   
 })
 
-routes.post('/api/product/create', async (req,res) => {
+routes.get('/api/product/:id', async (req,res) => {
+  try {
+    const {ID:ownerID} = res.locals.userData
+    const { id } = req.params
+    const response = await getSingleProduct(Number(id), Number(ownerID))
+    
+    if(response) {
+      res.status(response.status).json(response)
+    } else throw new Error('Nenhum produto foi encontrado.')
+  } catch(err:any) {
+    const response = createResponse(404, err.message)
+    res.status(response.status).json(response)
+  }
+  
+})
+
+routes.post('/api/product', async (req,res) => {
   try {
     const { ID, storename } = res.locals.userData
     const { name, value, qtd, categ, image } = req.body
@@ -58,7 +75,7 @@ routes.post('/api/product/create', async (req,res) => {
   }
 })
 
-routes.delete('/api/product/delete/:productId', async (req,res) => {
+routes.delete('/api/product/:productId', async (req,res) => {
   const { ID } = res.locals.userData
   const { productId } = req.params
 
@@ -67,7 +84,7 @@ routes.delete('/api/product/delete/:productId', async (req,res) => {
   res.status(response.status).json(response)
 })
 
-routes.put('/api/product/update', async (req,res) => {
+routes.put('/api/product', async (req,res) => {
   try {
     const { ID:ownerID } = res.locals.userData
     const { ID , name, value, qtd, categ, image } = req.body
@@ -104,7 +121,7 @@ routes.get('/api/product/categ', async (req,res) => {
   
 })
 
-routes.post('/api/product/categ/create', async (req,res) => {
+routes.post('/api/product/categ', async (req,res) => {
   try {
     const { ID, storename } = res.locals.userData
     const { name } = req.body
@@ -120,7 +137,7 @@ routes.post('/api/product/categ/create', async (req,res) => {
   
 })
 
-routes.delete('/api/product/categ/delete/:name', async (req,res) => {
+routes.delete('/api/product/categ/:name', async (req,res) => {
   try {
     const { ID } = res.locals.userData
     const { name } = req.params

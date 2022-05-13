@@ -29,7 +29,7 @@ export async function getProductData({
       const limitItems = position ? limit + position : limit
       products = products.slice(position,limitItems)
     }
-
+    console.log(products)
     return createResponse(200,products)
   } catch(err:any) {
     return false
