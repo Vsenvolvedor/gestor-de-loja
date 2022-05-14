@@ -30,7 +30,6 @@ const userCreate = async (req:any,res:any) => {
     if(response) {
       res.status(response.status).json(response)
     } else {
-
       throw new Error()
     }
   } catch(err) {
@@ -41,7 +40,6 @@ const userCreate = async (req:any,res:any) => {
 const userLogin = async (req:any, res:any) => {
   try {
     const { username, password } = req.body
- 
     const response = await loginUser(username,password)
   
     if(response) {  
@@ -55,7 +53,7 @@ const userLogin = async (req:any, res:any) => {
 
 const routes = express.Router()
 
-routes.use(isLogged).route('/').get(userData)
+routes.use('/data',isLogged).route('/data').get(userData)
 
 routes.route('/create').post(userCreate)
 routes.route('/login').post(userLogin)

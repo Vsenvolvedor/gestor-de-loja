@@ -3,7 +3,7 @@ import { theme } from "../../theme/theme";
 
 const LabelStyled = styled.label`
   display: block;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-family: ${theme.fontFamily.second};
   color: ${theme.colors.color05};
   margin-bottom: .5rem;
@@ -29,13 +29,21 @@ const InputStyled = styled.input`
   }
 `
 
+const ErrorStyle = styled.p`
+  font-size: 1.4rem;
+  font-family: ${theme.fontFamily.second};
+  color: #dd0000;
+  margin-bottom: 1rem;
+`
+
 interface InputProps {
   label: string;
   id: string;
   type?: string;
+  [props:string]:any
 }
 
-const Input = ({label,id,type}:InputProps) => {
+const Input = ({label,id,type,error,...props}:InputProps) => {
   return (
     <div>
       <LabelStyled htmlFor={id} >{label}</LabelStyled>
@@ -43,7 +51,9 @@ const Input = ({label,id,type}:InputProps) => {
         type={type ? type : 'text'}
         id={id}
         name={id}
+        {...props}
       />
+      {error ? <ErrorStyle>{error}</ErrorStyle> : null}
     </div>
   )
 }

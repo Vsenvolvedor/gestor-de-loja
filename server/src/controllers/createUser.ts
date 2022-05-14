@@ -36,7 +36,6 @@ export async function createUser({storename, username, password}:createUserProps
     return createResponse(200,'Usuario criado')
 
   } catch(err) {
-    console.log(err)
     return createResponse(409, 'Usuario já existe.')
   } 
 }
