@@ -8,6 +8,7 @@ import GraficoIcon from "../svgs/GraficoIcon"
 import SacolaIcon from "../svgs/SacolaIcon"
 import SairIcon from "../svgs/SairIcon"
 
+
 const MenuNav = styled.nav`
   background-color: ${theme.colors.color01};
   border-right: 4px solid ${theme.colors.color06};

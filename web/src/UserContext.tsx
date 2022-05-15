@@ -6,7 +6,8 @@ type UserContextType = {
   isLogged: boolean;
   loading: boolean;
   userData: object | null;
-  logoutUser: () => void
+  error: string | null;
+  logoutUser: () => void;
 }
 
 export const UserContext = React.createContext<UserContextType | null>(null)
@@ -53,6 +54,7 @@ export const UserProvider = ({children}:any) => {
       isLogged,
       loading,
       userData,
+      error,
       logoutUser
     }}>
       {children}

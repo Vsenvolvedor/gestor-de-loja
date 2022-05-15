@@ -1,5 +1,7 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import Loading from '../../Helpers/Loading'
 import { UserContext } from '../../UserContext'
 import SideMenu from './SideMenu'
 
@@ -11,7 +13,7 @@ const ManagerMenu = styled.div`
 const StoreGeral = () => {
   const userContext = React.useContext(UserContext)
   
-  console.log(userContext)
+  if(userContext?.loading) return <Loading />
   return (
     <ManagerMenu>
       <SideMenu />
