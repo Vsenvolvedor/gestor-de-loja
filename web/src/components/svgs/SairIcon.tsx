@@ -1,0 +1,10 @@
+const SairIcon = () => {
+  return (
+    <svg width="28" height="23" viewBox="0 0 28 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M2 1H17C17.5523 1 18 1.44772 18 2V11H9V12H18V21C18 21.5523 17.5523 22 17 22H2C1.44772 22 1 21.5523 1 21V2C1 1.44772 1.44771 1 2 1ZM19 12V21C19 22.1046 18.1046 23 17 23H2C0.895431 23 0 22.1046 0 21V2C0 0.89543 0.895431 0 2 0H17C18.1046 0 19 0.895431 19 2V11H25.2929L20.6464 6.35355L21.3536 5.64645L26.8536 11.1464L27.2071 11.5L26.8536 11.8536L21.3536 17.3536L20.6464 16.6464L25.2929 12H19Z" fill="black"/>
+    </svg>
+    
+  )
+}
+
+export default SairIcon

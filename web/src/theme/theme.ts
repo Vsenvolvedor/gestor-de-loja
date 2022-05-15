@@ -5,6 +5,8 @@ export const theme = {
     color03:'#6959F0',
     color04:'#E2A512',
     color05:'#302F32',
+    color06:'#9C9BA1',
+   
   },
   fontFamily: {
     first: 'Roboto Mono, Roboto, monospace',

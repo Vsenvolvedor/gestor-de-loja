@@ -1,22 +1,16 @@
-import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 import { USER_CREATE } from '../../../api/user'
+import Error from '../../../Helpers/Error'
 import useFetch from '../../../Hooks/useFetch'
 import { useForm } from '../../../Hooks/useForm'
-import { theme } from '../../../theme/theme'
 import Button from '../../Form/Button'
 import Input from '../../Form/Input'
 import MainFormTitle from './MainFormTitle'
 import MainLoginSectionStyle from './MainLoginSectionStyle'
 
-const ErrorStyle = styled.p`
-  font-size: 1.4rem;
-  font-family: ${theme.fontFamily.second};
-  color: #dd0000;
-  margin-bottom: 1rem;
-`
-
 const MainCreate = () => {
-  const {data,loading,error,request} = useFetch()
+  const navigate = useNavigate()
+  const {loading,error,request} = useFetch()
   const storeName = useForm()
   const username = useForm('username')
   const password = useForm()
@@ -33,7 +27,10 @@ const MainCreate = () => {
         username: username.value,
         password: password.value
       })
-      await request(url,options)
+      const {response}:any = await request(url,options)
+      if(response.ok) {
+        navigate('/store/geral')
+      }
     }
   }
 
@@ -60,7 +57,7 @@ const MainCreate = () => {
             id='password'
             {...password}
           />
-          {error ?  (<ErrorStyle>{error.message}</ErrorStyle>) : null}
+          {error ? <Error error={error.message} /> : null}
           {loading ? 
           (
             <Button marginConfig='1.5rem auto 0 auto' widthConfig='60%' disabled>

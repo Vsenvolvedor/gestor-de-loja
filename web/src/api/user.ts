@@ -1,10 +1,13 @@
 const baseURL = 'http://localhost:5555/api/user'
 
-export function USER_DATA() {
+export function USER_DATA(token:string) {
   const options = {
     url: `${baseURL}/data`,
     options: {
-      method:'GET'
+      method:'GET',
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      }
     }
   }
   return options

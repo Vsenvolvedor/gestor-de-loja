@@ -1,22 +1,16 @@
-import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 import { USER_LOGIN } from '../../../api/user'
+import Error from '../../../Helpers/Error'
 import  useFetch from '../../../Hooks/useFetch'
 import { useForm } from '../../../Hooks/useForm'
-import { theme } from '../../../theme/theme'
 import Button from '../../Form/Button'
 import Input from '../../Form/Input'
 import MainFormTitle from './MainFormTitle'
 import MainLoginSectionStyle from './MainLoginSectionStyle'
 
-const ErrorStyle = styled.p`
-  font-size: 1.4rem;
-  font-family: ${theme.fontFamily.second};
-  color: #dd0000;
-  margin-bottom: 1rem;
-`
-
 const MainLogin = () => {
-  const {data, loading, error, request} = useFetch()
+  const navigate = useNavigate()
+  const {loading, error, request} = useFetch()
   const username = useForm()
   const password = useForm()
 
@@ -35,6 +29,7 @@ const MainLogin = () => {
         if(json) {
           const { token }:any = json
           window.localStorage.setItem('token', token)
+          navigate('/store/geral')
         }
       }    
     }
@@ -57,18 +52,18 @@ const MainLogin = () => {
             id='password'
             {...password}
           />
-           {error ?  (<ErrorStyle>{error.message}</ErrorStyle>) : null}
-            {loading ? 
-          (
-            <Button marginConfig='1.5rem auto 0 auto' widthConfig='60%' disabled>
-              logando....
+          {error ? <Error error={error.message} /> : null}
+          {loading ? 
+            (
+              <Button marginConfig='1.5rem auto 0 auto' widthConfig='60%' disabled>
+                logando....
+              </Button>
+            ) 
+            :
+            (   
+            <Button marginConfig='1.5rem auto 0 auto' widthConfig='60%'>
+              login
             </Button>
-          ) 
-          :
-          (   
-           <Button marginConfig='1.5rem auto 0 auto' widthConfig='60%'>
-             login
-           </Button>
           )}
 
         </form>
