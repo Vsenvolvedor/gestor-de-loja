@@ -24,7 +24,7 @@ export const UserProvider = ({children}:any) => {
         setLoading(true)
         setError(null)
         const token = getToken()
-        if(!token) return false
+        if(!token){throw new Error('Não está logado')}
         const {url, options} = USER_DATA(token)
         const response = await fetch(url,options)
         const json = await response.json()

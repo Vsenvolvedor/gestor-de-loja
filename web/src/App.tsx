@@ -3,12 +3,10 @@ import Home from "./components/Content/Home"
 import Error404 from "./components/Error404"
 import Store from "./components/Store/Store"
 import GlobalStyles from "./theme/globalStyles"
-import {UserProvider } from "./UserContext"
 
 function App() {
-
+  
   return (
-    <UserProvider>
       <BrowserRouter>
           <Routes>
             <Route path="/*" element={<Home/>} />
@@ -17,7 +15,6 @@ function App() {
           </Routes>
           <GlobalStyles />
       </BrowserRouter>
-    </UserProvider>
   )
 }
 
