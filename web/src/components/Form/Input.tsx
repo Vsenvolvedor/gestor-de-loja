@@ -21,6 +21,7 @@ const InputStyled = styled.input`
   border-radius: 2px;
   padding: .5rem 1rem;
   margin-bottom: 1.5rem;
+  box-sizing: border-box;
   transition: .2s;
   &:hover,
   &:focus {
@@ -37,7 +38,7 @@ const ErrorStyle = styled.p`
 `
 
 interface InputProps {
-  label: string;
+  label?: string;
   id: string;
   type?: string;
   [props:string]:any

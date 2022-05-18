@@ -28,6 +28,7 @@ export const UserProvider = ({children}:any) => {
         const {url, options} = USER_DATA(token)
         const response = await fetch(url,options)
         const json = await response.json()
+       
         if(response.ok) {
           setIsLogged(true)
           setUserData(json)

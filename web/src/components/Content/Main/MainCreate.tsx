@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { USER_CREATE } from '../../../api/user'
+import { USER_CREATE, USER_LOGIN } from '../../../api/user'
 import Error from '../../../Helpers/Error'
 import useFetch from '../../../Hooks/useFetch'
 import { useForm } from '../../../Hooks/useForm'
@@ -10,7 +10,7 @@ import MainLoginSectionStyle from './MainLoginSectionStyle'
 
 const MainCreate = () => {
   const navigate = useNavigate()
-  const {loading,error,request} = useFetch()
+  const {loading,error,request}:any = useFetch()
   const storeName = useForm()
   const username = useForm('username')
   const password = useForm()
@@ -29,7 +29,16 @@ const MainCreate = () => {
       })
       const {response}:any = await request(url,options)
       if(response.ok) {
-        navigate('/store/geral')
+        const { url, options } = USER_LOGIN({
+          username: username.value,
+          password: password.value
+        })
+        const {json}:any = await request(url,options)
+        if(json) {
+          const { token }:any = json
+          window.localStorage.setItem('token', token)
+          navigate('/store/geral')
+        }
       }
     }
   }

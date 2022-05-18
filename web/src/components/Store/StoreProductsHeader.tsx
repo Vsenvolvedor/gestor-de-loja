@@ -19,11 +19,11 @@ const H1Style = styled.h1`
 
 const StoreProductsHeader = () => {
   const { userData }:any = React.useContext(UserContext)
-
+  
   return (
     <HeaderStyle>
       <H1Style>
-        {userData.storename}
+        {userData && userData.storename}
       </H1Style>
       <StoreSearch />
     </HeaderStyle>

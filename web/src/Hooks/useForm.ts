@@ -36,6 +36,7 @@ export function useForm(type?:string) {
   }
 
   function validate(text:string) {
+    if(type === 'false') return true
     if(!text) {
       setError('Não deixe em branco.')
       return false

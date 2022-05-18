@@ -10,7 +10,7 @@ import MainLoginSectionStyle from './MainLoginSectionStyle'
 
 const MainLogin = () => {
   const navigate = useNavigate()
-  const {loading, error, request} = useFetch()
+  const {loading, error, request}:any = useFetch()
   const username = useForm()
   const password = useForm()
 

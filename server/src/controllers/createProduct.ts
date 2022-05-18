@@ -8,7 +8,7 @@ interface createProductProps {
   name: string
   value:number
   qtd: number
-  categ: Array<string>
+  categ?: Array<string>
   image?: string
 }
 
@@ -42,7 +42,7 @@ export async function createProduct({
         "${storename}",
         "${name}",
         ${value},
-        "${categ}",
+        "${categ ? categ : 'Sem categorias'}",
         ${qtd},
         "${image ? image : 'false'}"
       )
