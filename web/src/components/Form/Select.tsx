@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
+import arrowCateg from '../../assets/setaCategs.svg'
 
 const SelectStyled = styled.select`
   display: block;
   width: 100%;
-  background-color: ${theme.colors.color02};
+  background: url(${arrowCateg}) no-repeat 98% 60%;
   font-size: 1.6rem;
+  background-color: ${theme.colors.color02};
   font-family: ${theme.fontFamily.second};
   color: ${theme.colors.color05};
   box-shadow: 1px 1px 2px rgba(0,0,0,.1);
@@ -35,7 +37,7 @@ const Select = ({SelectedLabel,options, setValue}:SelectProps) => {
     <SelectStyled
       onChange={({target}) => setValue(target.value)}
     >
-      {SelectedLabel && <option selected disabled>{SelectedLabel}</option>}
+      {SelectedLabel && <option value='' selected disabled>{SelectedLabel}</option>}
       {options && options.map((options,index) => {
         return (
           <option
