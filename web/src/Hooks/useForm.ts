@@ -24,6 +24,13 @@ const types = {
         }
       }, 
       message: 'A senha deve conter no minimo 8 caracteres, numeros e letras maiusculas'
+    },
+    number:{
+      test: (number:number) => {
+        if(number < 0) return false
+        else return true
+      },
+      message: 'O número não deve ser negativo'
     }
 } as TypesProps
 

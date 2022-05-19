@@ -30,6 +30,7 @@ const FlexInputs = styled.div`
 const GridInputs = styled.div`
   display: grid;
   grid-template-columns: .8fr 1fr;
+  align-items: center;
   gap: 3rem;
 `
 
@@ -66,11 +67,12 @@ interface StoreGestorCategsRemoveProps {
 }
 
 const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
-  const [categ, setCateg] = React.useState<Array<string>>([])
   const product = useForm()
-  const productValue = useForm()
-  const productQtd = useForm()
-
+  const productValue = useForm('number')
+  const productQtd = useForm('number')
+  const [categ, setCateg] = React.useState<Array<string>>([])
+  const [image, setImage] = React.useState<string>('')
+ 
   async function handleCreateProductSubmit(e:any) {
     e.preventDefault()
   }
@@ -127,8 +129,10 @@ const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
                 {...productQtd}
               />
             </FlexInputs>
-            
-            <ImageInput/>
+
+            <ImageInput
+              setImage={setImage}
+            />
           </div>
         </GridInputs>
         
