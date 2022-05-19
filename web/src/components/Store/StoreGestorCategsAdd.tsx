@@ -23,7 +23,7 @@ const FormStyle = styled.form`
 const StoreGestorCategsAdd = () => {
   const { loading, error, request }:any = useFetch()
   const [sucess, setSucess] = React.useState<boolean | string>(false)
-  const categAdd = useForm('false')
+  const categAdd = useForm()
 
   async function handleCategAddSubmit(e:any) {
     try {
@@ -48,7 +48,7 @@ const StoreGestorCategsAdd = () => {
   }
 
   return (
-    <div>
+    <div style={{height:'fit-content'}}>
       <Title>
         Adicionar categoria
       </Title>

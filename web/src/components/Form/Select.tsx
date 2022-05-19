@@ -2,6 +2,14 @@ import styled from "styled-components";
 import { theme } from "../../theme/theme";
 import arrowCateg from '../../assets/setaCategs.svg'
 
+const LabelStyled = styled.label`
+  display: block;
+  font-size: 1.8rem;
+  font-family: ${theme.fontFamily.second};
+  color: ${theme.colors.color05};
+  margin-bottom: .5rem;
+`
+
 const SelectStyled = styled.select`
   display: block;
   width: 100%;
@@ -26,29 +34,45 @@ const SelectStyled = styled.select`
 `
   
 interface SelectProps {
+  label?: string;
+  id: string;
   SelectedLabel?: string | null;
-  options: Array<any> | null
-  setValue: (value:string) => void
+  options: Array<any> | null;
+  // setValue: (value:string | Array<string>) => void;
+  setValue: any
+  isValueArray?: boolean
 }
 
-const Select = ({SelectedLabel,options, setValue}:SelectProps) => {
+const Select = ({label,id,SelectedLabel,options, setValue,isValueArray}:SelectProps) => {
  
   return (
-    <SelectStyled
-      onChange={({target}) => setValue(target.value)}
-    >
-      {SelectedLabel && <option value='' selected disabled>{SelectedLabel}</option>}
-      {options && options.map((options,index) => {
-        return (
-          <option
-            key={index}
-            value={options.name}
-          >
-            {options.name}
-          </option>
-        )
-      })}
-    </SelectStyled>
+    <div>
+      {label && <LabelStyled htmlFor={id}>{label}</LabelStyled>}
+      <SelectStyled
+        id={id}
+        defaultValue={'DEFAULT'} 
+        onChange={isValueArray?
+        ({target}) => setValue((prev:any) => {
+          const exist = prev.some((item:string) => item === target.value)
+          const items = exist ? [...prev] : [...prev,target.value]
+          return items
+        })
+          :
+        ({target}) => setValue(target.value)}
+      >
+        {SelectedLabel && <option value='DEFAULT' disabled>{SelectedLabel}</option>}
+        {options && options.map((options,index) => {
+          return (
+            <option
+              key={index}
+              value={options.name}
+            >
+              {options.name}
+            </option>
+          )
+        })}
+      </SelectStyled>
+    </div>
   )
 }
 

@@ -30,8 +30,8 @@ interface StoreGestorCategsRemoveProps {
 }
 
 const StoreGestorCategsRemove = ({categs}:StoreGestorCategsRemoveProps) => {
-  const { data, loading, error, request }:any = useFetch()
-  const [selectValue, setSelectValue] = React.useState<string>('')
+  const {loading, error, request }:any = useFetch()
+  const [selectValue, setSelectValue] = React.useState<string | Array<string>>('')
   const [sucess, setSucess] = React.useState<boolean | string>(false)
  
 
@@ -56,12 +56,13 @@ const StoreGestorCategsRemove = ({categs}:StoreGestorCategsRemoveProps) => {
   }
 
   return (
-    <div>
+    <div style={{height:'fit-content'}}>
       <Title>
         Remover categoria
       </Title>
       <FormStyle onSubmit={handleCategRemoveSubmit}>
         <Select 
+          id='removeCategs'
           SelectedLabel='Selecione a categoria'
           options={categs && categs.message}
           setValue={setSelectValue}

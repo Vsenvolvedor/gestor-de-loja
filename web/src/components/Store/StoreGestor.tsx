@@ -19,6 +19,8 @@ const ManagerMenu = styled.div`
 const ManagerProducts = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: .5fr auto;
+  gap: 3rem;
   justify-content: center;
   padding: 3rem;
 `
@@ -44,7 +46,7 @@ const StoreGestor = () => {
     <ManagerMenu>
       <SideMenu />
       <ManagerProducts>
-        <StoreGestorProducts />
+        <StoreGestorProducts categs={data} />
         <StoreGestorCategsAdd />
         <StoreGestorCategsRemove categs={data} />
       </ManagerProducts>
