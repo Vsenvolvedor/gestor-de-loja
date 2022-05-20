@@ -37,14 +37,13 @@ interface SelectProps {
   label?: string;
   id: string;
   SelectedLabel?: string | null;
-  options: Array<any> | null;
+  options: Array<{name:string}> | null;
   // setValue: (value:string | Array<string>) => void;
   setValue: any
   isValueArray?: boolean
 }
 
 const Select = ({label,id,SelectedLabel,options, setValue,isValueArray}:SelectProps) => {
- 
   return (
     <div>
       {label && <LabelStyled htmlFor={id}>{label}</LabelStyled>}

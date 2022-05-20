@@ -21,15 +21,16 @@ const FormStyle = styled.form`
 `
 
 type Categs = {
-  status: number,
-  message: Array<string>
-}
+  status?: number,
+  message?: Array<string>
+} 
 
 interface StoreGestorCategsRemoveProps {
   categs: Categs | null
+  update: () => void 
 }
 
-const StoreGestorCategsRemove = ({categs}:StoreGestorCategsRemoveProps) => {
+const StoreGestorCategsRemove = ({categs, update}:StoreGestorCategsRemoveProps) => {
   const {loading, error, request }:any = useFetch()
   const [selectValue, setSelectValue] = React.useState<string | Array<string>>('')
   const [sucess, setSucess] = React.useState<boolean | string>(false)
@@ -48,7 +49,8 @@ const StoreGestorCategsRemove = ({categs}:StoreGestorCategsRemoveProps) => {
         setSucess(json.message)
         setTimeout(() => {
           setSucess(false)
-        }, 1500)
+          update()
+        }, 1000)
       } else return false
     } catch(err) {
       setSucess(false)

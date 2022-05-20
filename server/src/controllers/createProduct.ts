@@ -25,6 +25,7 @@ export async function createProduct({
     const db = await Database
     const id = await createId('products')
     if(!id) return false
+    
     if(ownerID && storename && name && value && qtd && categ) {
       await db.run(`INSERT INTO products (
         ID,

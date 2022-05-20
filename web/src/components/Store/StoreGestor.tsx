@@ -29,14 +29,14 @@ const StoreGestor = () => {
   const userContext = React.useContext(UserContext)
   const {data, loading, request} = useFetch()
  
-  React.useEffect(() => {
-    async function getCategs() {
-      const token = getToken()
-      if(!token) return false
-      const { url, options} = CATEG_DATA(token)
-      await request(url, options)
-    }
+  async function getCategs() {
+    const token = getToken()
+    if(!token) return false
+    const { url, options} = CATEG_DATA(token)
+    await request(url, options)
+  }
 
+  React.useEffect(() => { 
     getCategs()
   }, [])
 
@@ -46,9 +46,9 @@ const StoreGestor = () => {
     <ManagerMenu>
       <SideMenu />
       <ManagerProducts>
-        <StoreGestorProducts categs={data} />
-        <StoreGestorCategsAdd />
-        <StoreGestorCategsRemove categs={data} />
+        <StoreGestorProducts categs={data}  />
+        <StoreGestorCategsAdd update={getCategs} />
+        <StoreGestorCategsRemove categs={data} update={getCategs} />
       </ManagerProducts>
     </ManagerMenu>
   )

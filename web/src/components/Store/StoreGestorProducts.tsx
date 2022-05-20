@@ -1,5 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import { PRODUCT_CREATE } from '../../api/store'
+import Error from '../../Helpers/Error'
+import { getToken } from '../../Helpers/getToken'
+import Sucess from '../../Helpers/Sucess'
+import useFetch from '../../Hooks/useFetch'
 import { useForm } from '../../Hooks/useForm'
 import { theme } from '../../theme/theme'
 import Button from '../Form/Button'
@@ -58,8 +63,8 @@ const SpanCategs = styled.span`
 `
 
 type Categs = {
-  status: number,
-  message: Array<string>
+  status?: number,
+  message?: Array<string>
 }
 
 interface StoreGestorCategsRemoveProps {
@@ -67,6 +72,8 @@ interface StoreGestorCategsRemoveProps {
 }
 
 const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
+  const {data,loading, error, request}:any = useFetch()
+  const [status, setStatus] = React.useState<string>('')
   const product = useForm()
   const productValue = useForm('number')
   const productQtd = useForm('number')
@@ -74,7 +81,29 @@ const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
   const [image, setImage] = React.useState<string>('')
  
   async function handleCreateProductSubmit(e:any) {
-    e.preventDefault()
+    try {
+      e.preventDefault()
+      const token = getToken()
+      if(!token) throw ''
+      if(!product.validate(product.value)) throw ''
+      if(!productValue.validate(productValue.value)) throw ''
+      if(!productQtd.validate(productQtd.value)) throw ''
+      const body = {
+        name: product.value,
+        value: productValue.value,
+        qtd: productQtd.value,
+        categ,
+        image
+      }
+      const {url, options} = PRODUCT_CREATE(body,token)
+      const {response, json}:any = await request(url,options)
+      if(response.ok) {
+        setStatus(data.message)
+        setTimeout(() => {
+          setStatus('')
+        },1000)
+      } else return false
+    } catch(err) { return false } 
   }
 
   function deleteItem({target}:any){
@@ -99,7 +128,7 @@ const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
               label='Categorias'
               id='categs'
               SelectedLabel='Selecione a categoria'
-              options={categs && categs.message}
+              options={categs && categs.message as Array<any>}
               setValue={setCateg}
               isValueArray={true}
             />
@@ -136,12 +165,24 @@ const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
           </div>
         </GridInputs>
         
-        <Button
-          marginConfig='1.5rem auto 0 auto'
-          widthConfig='40%'
-        >
-          Adicionar
-        </Button>
+        {loading ? (
+          <Button
+            marginConfig='1.5rem auto 0 auto'
+            widthConfig='40%'
+            disabled
+          >
+            Criar Produto
+          </Button>
+        ):(
+          <Button
+            marginConfig='1.5rem auto 0 auto'
+            widthConfig='40%'
+          >
+            Criar Produto
+          </Button>
+        )}
+        {error ? <Error error={error.message}/> : null}
+        {status ? <Sucess message={status} /> : null}
       </FormStyle>
     </FormWrapper>
   )

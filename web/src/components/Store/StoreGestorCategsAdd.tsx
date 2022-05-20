@@ -20,7 +20,7 @@ const FormStyle = styled.form`
   width: 300px;
 `
 
-const StoreGestorCategsAdd = () => {
+const StoreGestorCategsAdd = ({update}:{update: () => void}) => {
   const { loading, error, request }:any = useFetch()
   const [sucess, setSucess] = React.useState<boolean | string>(false)
   const categAdd = useForm()
@@ -40,7 +40,8 @@ const StoreGestorCategsAdd = () => {
         setSucess(json.message)
         setTimeout(() => {
           setSucess(false)
-        }, 1500)
+          update()
+        }, 1000)
       } else return false
     } catch(err) {
       setSucess(false)

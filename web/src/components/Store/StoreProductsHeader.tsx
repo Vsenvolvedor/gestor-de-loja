@@ -8,6 +8,7 @@ const HeaderStyle = styled.header`
   background-color: ${theme.colors.color01};
   padding: 3rem;
   text-align: center;
+  margin-bottom: 3rem;
 `
 
 const H1Style = styled.h1`
