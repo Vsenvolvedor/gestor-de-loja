@@ -52,13 +52,8 @@ const SearchInput = styled.input`
 
 
 const StoreSearch = ({search}:{search:(text:string) => void}) => {
-  const searchInput = useForm()
 
-  function handleSearch() {
-    if(searchInput.validate(searchInput.value)) {
-      search(searchInput.value)
-    } else return false
-  }
+  const searchInput = useForm()
 
   return (
     <ContainerFlex>
@@ -67,7 +62,7 @@ const StoreSearch = ({search}:{search:(text:string) => void}) => {
         placeholder='Busque um produto pelo nome' 
         {...searchInput}
       />
-      <ButtonStyle onClick={handleSearch}>
+      <ButtonStyle onClick={() => search(searchInput.value)}>
         Buscar
       </ButtonStyle>
     </ContainerFlex>
