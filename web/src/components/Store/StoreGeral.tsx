@@ -18,7 +18,9 @@ const StoreGeral = () => {
 
   return (
     <ManagerMenu>
-      <SideMenu />
+      <div>
+        <SideMenu />
+      </div>
       <div>
         adsadas
       </div>

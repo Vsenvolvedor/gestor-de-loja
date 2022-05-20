@@ -14,10 +14,8 @@ const MenuNav = styled.nav`
   border-right: 4px solid ${theme.colors.color06};
   padding: 3rem 0;
   height: 100vh;
-`
-
-const MenuUl = styled.ul`
-
+  width: 396px;
+  position: fixed;
 `
 
 const MenuLi = styled.li`
@@ -51,7 +49,7 @@ const SideMenu = () => {
   
   return (
     <MenuNav>
-      <MenuUl>
+      <ul>
         <MenuLi>
           <NavLink to='/store/geral' end>
             Visão Geral
@@ -76,7 +74,7 @@ const SideMenu = () => {
             <SairIcon />
           </NavLink>
         </MenuLi>
-      </MenuUl>
+      </ul>
     </MenuNav>
   )
 }

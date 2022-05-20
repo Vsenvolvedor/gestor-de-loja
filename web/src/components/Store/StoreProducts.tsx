@@ -15,6 +15,9 @@ const ManagerMenu = styled.div`
   grid-template-columns: 400px 1fr;
 `
 
+const ScrollUl = styled.ul`
+`
+
 const StoreProducts = () => {
   const {data, loading, error, request} = useFetch()
   const userContext = React.useContext(UserContext)
@@ -39,10 +42,21 @@ const StoreProducts = () => {
   if(userContext?.error) return <AlertError error={userContext?.error} />
   return (
     <ManagerMenu>
-      <SideMenu />
+      <div>
+        <SideMenu />
+      </div>
       <main>
         <StoreProductsHeader />
-        <StoreProductItem data={data && data.message[0]} />
+        <ScrollUl>
+          {data && data.message.map((item) => {
+            return (
+              <StoreProductItem 
+                key={item.ID}
+                data={item} 
+              />
+            )
+          })}
+        </ScrollUl>
       </main>
     </ManagerMenu>
   )

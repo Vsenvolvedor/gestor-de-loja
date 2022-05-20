@@ -44,7 +44,9 @@ const StoreGestor = () => {
   if(userContext?.error) return <AlertError error={userContext?.error} />
   return (
     <ManagerMenu>
-      <SideMenu />
+      <div>
+        <SideMenu />
+      </div>
       <ManagerProducts>
         <StoreGestorProducts categs={data}  />
         <StoreGestorCategsAdd update={getCategs} />
