@@ -22,11 +22,11 @@ const StoreProducts = () => {
   const {data, loading, error, request} = useFetch()
   const userContext = React.useContext(UserContext)
 
-  async function getProducts() {
+  async function getProducts(searchData?:string) {
     const token = getToken()
     if(!token) return false
     const query = {
-      search: '',
+      search: searchData ? searchData : '',
       page: '0',
       limit:'0'
     }
@@ -46,7 +46,7 @@ const StoreProducts = () => {
         <SideMenu />
       </div>
       <main>
-        <StoreProductsHeader />
+        <StoreProductsHeader search={getProducts} />
         <ScrollUl>
           {data && data.message.map((item) => {
             return (

@@ -18,7 +18,7 @@ const H1Style = styled.h1`
   margin-bottom: 3rem;
 `
 
-const StoreProductsHeader = () => {
+const StoreProductsHeader = ({search}:{search:() => void}) => {
   const { userData }:any = React.useContext(UserContext)
   
   return (
@@ -26,7 +26,9 @@ const StoreProductsHeader = () => {
       <H1Style>
         {userData && userData.storename}
       </H1Style>
-      <StoreSearch />
+      <StoreSearch 
+        search={search}
+      />
     </HeaderStyle>
   )
 }
