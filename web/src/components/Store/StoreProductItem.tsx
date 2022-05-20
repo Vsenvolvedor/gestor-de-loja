@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
+import DeleteButton from "../Form/DeleteButton";
+import EditButton from "../Form/EditButton";
 
 const ItemWrapper = styled.li`
   display: flex;
@@ -54,8 +56,12 @@ type ProductData = {
   value: number
 }
 
-const StoreProductItem = ({data}:{data:ProductData}) => {
-  console.log(data)
+interface StoreProductItemProps {
+  data:ProductData;
+  refresh: () => void
+}
+
+const StoreProductItem = ({data, refresh}:StoreProductItemProps) => {
   if(!data) return null
   return (
     <ItemWrapper id={data.ID.toString()}>
@@ -72,6 +78,11 @@ const StoreProductItem = ({data}:{data:ProductData}) => {
           <Title><span>Em estoque:</span> {data.quantity}</Title>
         </div>
       </FlexDiv>
+      <DeleteButton 
+        id={data.ID.toString()} 
+        refresh={refresh}
+      />
+      <EditButton />
     </ItemWrapper>
   )
 }

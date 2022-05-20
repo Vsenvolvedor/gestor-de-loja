@@ -53,6 +53,7 @@ const StoreProducts = () => {
               <StoreProductItem 
                 key={item.ID}
                 data={item} 
+                refresh={getProducts}
               />
             )
           })}
