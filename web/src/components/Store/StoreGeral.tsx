@@ -19,6 +19,7 @@ const ManagerMenu = styled.div`
 `
 
 const ManagerContent = styled.div`
+  padding: 3rem;
   transform: translateX(-30px);
   opacity: 0;
   animation: ${animeLeft} .5s forwards;
