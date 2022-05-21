@@ -37,7 +37,7 @@ const StoreGeral = () => {
         <SideMenu />
       </div>
       <ManagerContent>
-        adsadas
+
       </ManagerContent>
     </ManagerMenu>
   )

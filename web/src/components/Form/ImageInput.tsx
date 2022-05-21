@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { theme } from '../../theme/theme'
 import Photo from '../svgs/Photo'
-import lojaimg from '../../assets/loja.jpg'
 
 const ImageWrapperStyle = styled.div`
   background-color: ${theme.colors.color02};
@@ -16,6 +15,7 @@ const ImageLabelStyle = styled.label`
   margin: 0 auto;
   width: fit-content;
   cursor: pointer;
+  position: relative;
 `
 
 const ImageInputStyle = styled.input`
@@ -29,12 +29,23 @@ const ImagePStyle = styled.p`
   margin-top: .5rem;
 `
 
+const LocalImage = styled.img`
+  border: 2px solid ${theme.colors.color05};
+  border-radius: .4rem;
+  box-shadow: 2px 2px 4px rgba(0,0,0,.1);
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+`
+
 interface ImageInputProps {
   setImage: (value:string) => void
 }
 
 const ImageInput = ({setImage}:ImageInputProps) => {
-  const imageRef = React.useRef()
+  const imageRef = React.useRef<any>()
+  const [hasImage, setHasImage] = React.useState<boolean>(false)
+  const [localImage, setLocalImage] = React.useState<string>('')
 
   function handleImage() {
     const file = imageRef.current.files[0]
@@ -50,23 +61,42 @@ const ImageInput = ({setImage}:ImageInputProps) => {
       ctx?.clearRect(0,0,canvas.width,canvas.height)
       ctx?.drawImage(image, 0, 0, 200, 120)
       const dataURL = canvas.toDataURL('image/png',.5)
+      setLocalImage(dataURL)
       setImage(dataURL)
+      setHasImage(true)
     }
+  }
+
+  function resetImage() {
+    setImage('')
+    setLocalImage('')
+    setHasImage(false)
+    imageRef.current.files[0] = ''
+    imageRef.current.value = ''
   }
 
   return (
     <ImageWrapperStyle>
-      <ImageLabelStyle htmlFor='imageInput'>
-        <Photo />
-        <ImagePStyle>Selecione uma imagem</ImagePStyle>
-      </ImageLabelStyle>
-      <ImageInputStyle 
-        type='file'
-        id='imageInput'
-        onChange={handleImage}
-        ref={imageRef}
-      />
-     
+      {hasImage ? (
+        <ImageLabelStyle onClick={resetImage} >
+          <LocalImage src={localImage}/>
+          <ImagePStyle>Imagem selecionada</ImagePStyle>
+        </ImageLabelStyle>
+      ):(
+        <>
+          <ImageLabelStyle htmlFor='imageInput'>
+            <Photo />
+            <ImagePStyle>Selecione uma imagem</ImagePStyle>
+          </ImageLabelStyle>
+          <ImageInputStyle 
+            type='file'
+            id='imageInput'
+            onChange={handleImage}
+            ref={imageRef}
+          />
+        </>
+      )}
+      
     </ImageWrapperStyle>
   
   )
