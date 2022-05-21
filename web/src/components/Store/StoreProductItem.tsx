@@ -49,6 +49,12 @@ const ImageWrapper = styled.div`
   color: ${theme.colors.color01};
 `
 
+const ImageItem = styled.img`
+  max-width: 200px;
+  width: 100%;
+  height: 120px;
+`
+
 type ProductData = {
   ID: number;
   image: string;
@@ -70,7 +76,7 @@ const StoreProductItem = ({data, refresh, setModal,setEditProduct}:StoreProductI
   return (
     <ItemWrapper id={data.ID.toString()}>
       <ImageWrapper>
-        {data.image === 'false' ? 'Sem Imagem' : <img src={data.image} alt={data.name}/>}
+        {data.image === 'false' ? 'Sem Imagem' : <ImageItem src={data.image} alt={data.name}/>}
       </ImageWrapper>
       <FlexDiv>
         <div>
@@ -78,7 +84,7 @@ const StoreProductItem = ({data, refresh, setModal,setEditProduct}:StoreProductI
           <Title><span>Categoria:</span> {data.categ.length ? data.categ : 'Sem categorias'}</Title>
         </div>
         <div>
-          <Title><span>Valor unitário:</span> {data.value}</Title>
+          <Title><span>Valor unitário:</span> R$ {data.value}</Title>
           <Title><span>Em estoque:</span> {data.quantity}</Title>
         </div>
       </FlexDiv>

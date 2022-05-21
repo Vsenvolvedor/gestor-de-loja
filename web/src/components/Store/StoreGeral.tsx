@@ -1,13 +1,27 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import AlertError from '../../Helpers/AlertError'
 import Loading from '../../Helpers/Loading'
 import { UserContext } from '../../UserContext'
 import SideMenu from './SideMenu'
 
+const animeLeft = keyframes`
+  to {
+    opacity: initial;
+    transform: initial;
+  }
+`
+
 const ManagerMenu = styled.div`
   display: grid;
   grid-template-columns: 400px 1fr;
+
+`
+
+const ManagerContent = styled.div`
+  transform: translateX(-30px);
+  opacity: 0;
+  animation: ${animeLeft} .5s forwards;
 `
 
 const StoreGeral = () => {
@@ -21,9 +35,9 @@ const StoreGeral = () => {
       <div>
         <SideMenu />
       </div>
-      <div>
+      <ManagerContent>
         adsadas
-      </div>
+      </ManagerContent>
     </ManagerMenu>
   )
 }

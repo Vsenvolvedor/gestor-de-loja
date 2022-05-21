@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { CATEG_DATA } from '../../api/categ'
 import AlertError from '../../Helpers/AlertError'
 import { getToken } from '../../Helpers/getToken'
@@ -11,11 +11,17 @@ import StoreGestorCategsAdd from './StoreGestorCategsAdd'
 import StoreGestorCategsRemove from './StoreGestorCategsRemove'
 import StoreGestorProducts from './StoreGestorProducts'
 
+const animeLeft = keyframes`
+  to {
+    opacity: initial;
+    transform: initial;
+  }
+`
+
 const ManagerMenu = styled.div`
   display: grid;
   grid-template-columns: 400px 1fr;
 `
-
 const ManagerProducts = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -23,6 +29,9 @@ const ManagerProducts = styled.div`
   gap: 3rem;
   justify-content: center;
   padding: 3rem;
+  transform: translateX(-30px);
+  opacity: 0;
+  animation: ${animeLeft} .5s forwards;
 `
 
 const StoreGestor = () => {

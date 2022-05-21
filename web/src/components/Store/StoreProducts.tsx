@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { PRODUCT_DATA } from '../../api/store'
 import AlertError from '../../Helpers/AlertError'
 import { getToken } from '../../Helpers/getToken'
@@ -11,16 +11,27 @@ import StoreProductItem from './StoreProductItem'
 import StoreProductsHeader from './StoreProductsHeader'
 import StoreProductsModal from './StoreProductsModal'
 
+const animeLeft = keyframes`
+  to {
+    opacity: initial;
+    transform: initial;
+  }
+`
+
 const ManagerMenu = styled.div`
   display: grid;
   grid-template-columns: 400px 1fr;
+  
 `
 
-const ScrollUl = styled.ul`
+const MainContent = styled.main`
+  transform: translateX(-30px);
+  opacity: 0;
+  animation: ${animeLeft} .5s forwards;
 `
 
 const StoreProducts = () => {
-  const {data, loading,request} = useFetch()
+  const {data, loading,request}:any = useFetch()
   const userContext = React.useContext(UserContext)
   const [modal, setModal] = React.useState(false)
   const [editProduct, setEditProduct] = React.useState('')
@@ -49,9 +60,9 @@ const StoreProducts = () => {
       <div>
         <SideMenu />
       </div>
-      <main>
+      <MainContent>
         <StoreProductsHeader search={getProducts} />
-        <ScrollUl>
+        <ul>
           {data && data.message.map((item:any) => {
             return (
               <StoreProductItem 
@@ -63,8 +74,8 @@ const StoreProducts = () => {
               />
             )
           })}
-        </ScrollUl>
-      </main>
+        </ul>
+      </MainContent>
       <StoreProductsModal 
         active={modal}
         refresh={getProducts}

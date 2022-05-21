@@ -62,7 +62,7 @@ const StoreSearch = ({search}:{search:(text:string) => void}) => {
         placeholder='Busque um produto pelo nome' 
         {...searchInput}
       />
-      <ButtonStyle onClick={() => search(searchInput.value)}>
+      <ButtonStyle onClick={() => search(searchInput.value.toLowerCase())}>
         Buscar
       </ButtonStyle>
     </ContainerFlex>
