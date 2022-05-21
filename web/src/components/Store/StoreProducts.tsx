@@ -35,7 +35,7 @@ const StoreProducts = () => {
   const userContext = React.useContext(UserContext)
   const [modal, setModal] = React.useState(false)
   const [editProduct, setEditProduct] = React.useState('')
-
+  
   async function getProducts(searchData?:string) {
     const token = getToken()
     if(!token) return false
@@ -45,8 +45,8 @@ const StoreProducts = () => {
       limit:'0'
     }
     const {url, options} = PRODUCT_DATA(query,token)
-    const {json}:any = await request(url, options)
-    console.log(json)
+    await request(url, options)
+    
   }
 
   React.useEffect(() => {
