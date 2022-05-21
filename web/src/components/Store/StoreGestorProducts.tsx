@@ -98,7 +98,7 @@ const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
       const {url, options} = PRODUCT_CREATE(body,token)
       const {response, json}:any = await request(url,options)
       if(response.ok) {
-        setStatus(data.message)
+        setStatus(json.message)
         setTimeout(() => {
           setStatus('')
         },1000)
