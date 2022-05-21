@@ -8,7 +8,7 @@ import XIcon from '../svgs/XIcon'
 
 const DeleteBtn = styled.button`
   background-color: ${theme.colors.color04};
-  padding: .5rem;
+  padding: .5rem 1rem;
   position: absolute;
   top: 0;
   right: 0;

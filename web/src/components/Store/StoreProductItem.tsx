@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
 import DeleteButton from "../Form/DeleteButton";
@@ -19,6 +20,7 @@ const Title = styled.h2`
   font-size: 1.6rem;
   font-weight: 400;
   font-family: ${theme.fontFamily.second};
+  text-transform: capitalize;
   color: ${theme.colors.color05};
   margin-bottom: 1rem;
   & span {
@@ -58,10 +60,12 @@ type ProductData = {
 
 interface StoreProductItemProps {
   data:ProductData;
-  refresh: () => void
+  refresh: () => void;
+  setModal: Dispatch<SetStateAction<boolean>>
+  setEditProduct: Dispatch<SetStateAction<string>>
 }
 
-const StoreProductItem = ({data, refresh}:StoreProductItemProps) => {
+const StoreProductItem = ({data, refresh, setModal,setEditProduct}:StoreProductItemProps) => {
   if(!data) return null
   return (
     <ItemWrapper id={data.ID.toString()}>
@@ -82,7 +86,11 @@ const StoreProductItem = ({data, refresh}:StoreProductItemProps) => {
         id={data.ID.toString()} 
         refresh={refresh}
       />
-      <EditButton />
+      <EditButton 
+        id={data.ID.toString()}
+        activeModal={setModal}
+        giveID={setEditProduct}
+      />
     </ItemWrapper>
   )
 }

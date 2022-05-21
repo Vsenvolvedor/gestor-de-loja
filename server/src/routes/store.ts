@@ -72,7 +72,7 @@ const productUpdateData = async (req:any,res:any) => {
   try {
     const { ID:ownerID } = res.locals.userData
     const { ID , name, value, qtd, categ, image } = req.body
-
+  
     const response = await updateProduct({
       ID,
       ownerID,

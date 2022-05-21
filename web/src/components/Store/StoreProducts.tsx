@@ -9,6 +9,7 @@ import { UserContext } from '../../UserContext'
 import SideMenu from './SideMenu'
 import StoreProductItem from './StoreProductItem'
 import StoreProductsHeader from './StoreProductsHeader'
+import StoreProductsModal from './StoreProductsModal'
 
 const ManagerMenu = styled.div`
   display: grid;
@@ -19,8 +20,10 @@ const ScrollUl = styled.ul`
 `
 
 const StoreProducts = () => {
-  const {data, loading, error, request} = useFetch()
+  const {data, loading,request} = useFetch()
   const userContext = React.useContext(UserContext)
+  const [modal, setModal] = React.useState(false)
+  const [editProduct, setEditProduct] = React.useState('')
 
   async function getProducts(searchData?:string) {
     const token = getToken()
@@ -48,17 +51,25 @@ const StoreProducts = () => {
       <main>
         <StoreProductsHeader search={getProducts} />
         <ScrollUl>
-          {data && data.message.map((item) => {
+          {data && data.message.map((item:any) => {
             return (
               <StoreProductItem 
                 key={item.ID}
                 data={item} 
                 refresh={getProducts}
+                setModal={setModal}
+                setEditProduct={setEditProduct}
               />
             )
           })}
         </ScrollUl>
       </main>
+      <StoreProductsModal 
+        active={modal}
+        refresh={getProducts}
+        setModal={setModal}
+        id={editProduct}
+      />
     </ManagerMenu>
   )
 }

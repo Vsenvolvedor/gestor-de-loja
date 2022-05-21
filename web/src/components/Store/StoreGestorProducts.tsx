@@ -89,7 +89,7 @@ const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
       if(!productValue.validate(productValue.value)) throw ''
       if(!productQtd.validate(productQtd.value)) throw ''
       const body = {
-        name: product.value,
+        name: product.value.toLowerCase(),
         value: productValue.value,
         qtd: productQtd.value,
         categ,
@@ -171,7 +171,7 @@ const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
             widthConfig='40%'
             disabled
           >
-            Criar Produto
+            Criando...
           </Button>
         ):(
           <Button

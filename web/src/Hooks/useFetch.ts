@@ -20,6 +20,7 @@ const useFetch = () => {
       }
     } catch(err:any) {
       json = null
+      
       setError(err)
       setTimeout(() => {
         setError(null)
