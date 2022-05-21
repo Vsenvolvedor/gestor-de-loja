@@ -70,7 +70,7 @@ const StoreProductItem = ({data, refresh, setModal,setEditProduct}:StoreProductI
   return (
     <ItemWrapper id={data.ID.toString()}>
       <ImageWrapper>
-        {data.image === 'false' ? 'Sem Imagem' : data.image}
+        {data.image === 'false' ? 'Sem Imagem' : <img src={data.image} alt={data.name}/>}
       </ImageWrapper>
       <FlexDiv>
         <div>

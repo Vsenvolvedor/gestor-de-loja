@@ -34,7 +34,8 @@ const StoreProducts = () => {
       limit:'0'
     }
     const {url, options} = PRODUCT_DATA(query,token)
-    await request(url, options)
+    const {json}:any = await request(url, options)
+    console.log(json)
   }
 
   React.useEffect(() => {

@@ -79,7 +79,7 @@ const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
   const productQtd = useForm('number')
   const [categ, setCateg] = React.useState<Array<string>>([])
   const [image, setImage] = React.useState<string>('')
- 
+  
   async function handleCreateProductSubmit(e:any) {
     try {
       e.preventDefault()
@@ -93,7 +93,7 @@ const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
         value: productValue.value,
         qtd: productQtd.value,
         categ,
-        image
+        image: image ? image : 'false'
       }
       const {url, options} = PRODUCT_CREATE(body,token)
       const {response, json}:any = await request(url,options)
