@@ -30,7 +30,7 @@ const StoreGestorCategsAdd = ({update}:{update: () => void}) => {
       e.preventDefault()
       const token = getToken()
       if(!token) throw ''
-      if(!categAdd.value.length) throw ''
+      if(!categAdd.value.length || categAdd.value.startsWith(' ')) throw ''
       const { url, options } = CATEG_CREATE(token,{
         name: categAdd.value
       })

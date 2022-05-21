@@ -43,7 +43,7 @@ export function useForm(type?:string) {
   }
 
   function validate(text:string) {
-    if(!text) {
+    if(!text || text.startsWith(' ')) {
       setError('Não deixe em branco.')
       return false
     } 
