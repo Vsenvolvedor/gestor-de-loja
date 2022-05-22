@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { VictoryPie } from 'victory'
 import { theme } from '../../theme/theme'
 
 const InfoBox = styled.div`
@@ -8,6 +9,7 @@ const InfoBox = styled.div`
   width: fit-content;
   margin: 0 auto;
   padding: 3rem 1.5rem;
+  margin-bottom: 3rem;
   & h2:nth-child(2) {
     margin: 1rem 0;
   }
@@ -78,17 +80,39 @@ const StoreGeralInfo = ({data}:{data:DataProps | null}) => {
   }, [])
 
   return (
-    <InfoBox>
-      <InfoItems>
-        Cadastrados: <InfoDest>{cadastrados ? cadastrados : 0}</InfoDest>
-      </InfoItems>
-      <InfoItems>
-        Media de preço: <InfoDest>R$ {mediaPreco ? mediaPreco : 0}</InfoDest>
-      </InfoItems>
-      <InfoItems>
-        Estoque Total: <InfoDest>{estoqueTotal ? estoqueTotal : 0}</InfoDest>
-      </InfoItems>
-    </InfoBox>
+    <>
+      <InfoBox>
+        <InfoItems>
+          Cadastrados: <InfoDest>{cadastrados ? cadastrados : 0}</InfoDest>
+        </InfoItems>
+        <InfoItems>
+          Media de preço: <InfoDest>R$ {mediaPreco ? mediaPreco : 0}</InfoDest>
+        </InfoItems>
+        <InfoItems>
+          Estoque Total: <InfoDest>{estoqueTotal ? estoqueTotal : 0}</InfoDest>
+        </InfoItems>
+      </InfoBox>
+      <InfoBox>
+        <VictoryPie
+          style={{
+            labels: {
+              fontSize: 18,
+              fontWeight: 'bold'
+            }
+          }}
+          colorScale={[theme.colors.color05,theme.colors.color04,theme.colors.color03]}
+          data={[
+            { x: "Cadastrados", y: cadastrados || 0 },
+            { x: "Media/Preço", y: mediaPreco || 0},
+            { x: "Estoque/Total", y: estoqueTotal || 0 }
+          ]}
+          padding={{top:35,bottom:0,left:0,right:0}}
+          width={550}
+          height={300}
+        />
+      </InfoBox>
+    </>
+    
   )
 }
 

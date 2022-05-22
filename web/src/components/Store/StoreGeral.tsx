@@ -8,7 +8,8 @@ import useFetch from '../../Hooks/useFetch'
 import { theme } from '../../theme/theme'
 import { UserContext } from '../../UserContext'
 import SideMenu from './SideMenu'
-import StoreGeralInfo from './StoreGeralInfo'
+
+const StoreGeralInfo = React.lazy(() => import('./StoreGeralInfo'))
 
 const animeLeft = keyframes`
   to {
@@ -35,12 +36,12 @@ const Title = styled.h1`
   font-weight: 400;
   color: ${theme.colors.color05};
   text-align: center;
-  margin-bottom: 6rem;
+  margin-bottom: 3rem;
 `
 
 const StoreGeral = () => {
   const userContext = React.useContext(UserContext)
-  const {data, loading,request} = useFetch()
+  const {data, loading,request}:any = useFetch()
   
   React.useEffect(() => {
     async function getData() {
@@ -60,6 +61,7 @@ const StoreGeral = () => {
   
   if(userContext?.loading || loading) return <Loading />
   if(userContext?.error) return <AlertError error={userContext?.error} />
+  if(!data) return null
 
   return (
     <ManagerMenu>
@@ -70,7 +72,9 @@ const StoreGeral = () => {
         <Title>
           Visão Geral
         </Title>
-        <StoreGeralInfo data={data} />
+        <React.Suspense fallback={<Loading />}>
+          <StoreGeralInfo data={data} />  
+        </React.Suspense>
       </ManagerContent>
     </ManagerMenu>
   )
