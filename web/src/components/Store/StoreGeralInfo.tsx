@@ -101,11 +101,11 @@ const StoreGeralInfo = ({data}:{data:DataProps | null}) => {
             }
           }}
           colorScale={[theme.colors.color05,theme.colors.color04,theme.colors.color03]}
-          data={[
-            { x: "Cadastrados", y: cadastrados || 0 },
-            { x: "Media/Preço", y: mediaPreco || 0},
-            { x: "Estoque/Total", y: estoqueTotal || 0 }
-          ]}
+          data={ data?.message.length ? [
+            { x: "Cadastrados", y: cadastrados  },
+            { x: "Media/Preço", y: mediaPreco },
+            { x: "Estoque/Total", y: estoqueTotal  }
+          ]:[{x:'Sem dados', y:100},{x:'Sem dados', y:0}]}
           padding={{top:35,bottom:0,left:0,right:0}}
           width={550}
           height={300}
