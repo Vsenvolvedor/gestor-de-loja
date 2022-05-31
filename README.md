@@ -22,13 +22,13 @@ Para a construção do front end utilizei as seguintes tecnologias:
 
 ### Funcionalidades
 
-  - [X]Gerenciamento da Loja
-  - [X]Criar conta
-  - [X]Logar usuario
-  - [X]Gráficos
-  - [X]Personalize as categorias
-  - [X]Crie, Remova e atualize os produtos
-  - [X]Home Responsiva
+  - [X] Gerenciamento da Loja
+  - [X] Criar conta
+  - [X] Logar usuario
+  - [X] Gráficos
+  - [X] Personalize as categorias
+  - [X] Crie, Remova e atualize os produtos
+  - [X] Home Responsiva
 
 <h3 align='center'>Gestor - Dados</h3>
 <img src='./github/geral.PNG'>
@@ -51,10 +51,10 @@ Para a construção do back end utilizei as seguintes tecnologias:
 
 ### Funcionalidades
 
-  - [X]Gerenciamento das rotas
-  - [X]Criar, Atualizar e Remover do banco de dados
-  - [X]Validação de dados
-  - [X]JWT Token
+  - [X] Gerenciamento das rotas
+  - [X] Criar, Atualizar e Remover do banco de dados
+  - [X] Validação de dados
+  - [X] JWT Token
   - [X] Response com controle de erros
 
 A API utiliza dos métodos HTTP e assim controla os dados recebidos.
