@@ -58,9 +58,33 @@ $ git clone <https://github.com/viteydev/gestor-de-loja>
 
 $ cd gestor-de-loja
 
+#Para o front funcionar é necessário iniciar o back para isso faça
 
+$ cd server
+
+# instale as dependencias
+$ npm install
+
+# Crie o banco de dados
+$ npm createDB
+
+# incie o servidor
+$ npm run dev
+
+#O servidor irá iniciar e irá faltar iniciar o front
+
+$ cd web
+
+# Instale as dependencias
+$ npm install
+
+# Inicie o front
+& npm run dev
 
 #O servidor inciará na porta:3000 - acesse <http://localhost:3000>
+
+#Assim será possivel visualizar e utilizar de todas as funcionalidades do projeto
+
 ```
 
 #### Feito por Vitor 👍 | Veja meu [Linkedin](https://www.linkedin.com/in/vitor-lemos-1a61b3238/)
