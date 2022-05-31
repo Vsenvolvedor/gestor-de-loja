@@ -1,30 +1,16 @@
-<h1 align='center'>Gestor de Loja</h1>
+<h2 align='center'>Gestor de Loja</h2>
 <h3 align='center'>
-  <a href="#BackEnd">Back-End</a> |
   <a href="#FrontEnd">Front-End</a> |
+  <a href="#BackEnd">Back-End</a> |
   <a href="#pre-requisitos">Pré-requisitos</a> 
 </h3>
-
-<h2 id='BackEnd'>Back-End</h2>
-Para a construção do back end utilizei as seguintes tecnologias:
-<ul> 
-  <li>Javascript</li>
-  <li>Typescript</li>
-  <li>NodeJs</li>
-  <li>ExpressJS</li>
-  <li>Cors - Biblioteca</li>
-  <li>jsonwebtoken</li>
-  <li>SQLite</li>
-</ul>
-
-### Funcionalidades
-
-  - [X]Gerenciamento das rotas
-  - [X]Criar, Atualizar e Remover do banco de dados
-  - [X]Validação de dados
-  - [X]JWT Token
+<hr>
+<img src='./github/gestojagif.gif'>
+<hr>
 
 <h2 id='FrontEnd'>Front-End</h2>
+
+### Tecnologias
 Para a construção do front end utilizei as seguintes tecnologias:
 <ul> 
   <li>Javascript</li>
@@ -43,6 +29,35 @@ Para a construção do front end utilizei as seguintes tecnologias:
   - [X]Personalize as categorias
   - [X]Crie, Remova e atualize os produtos
   - [X]Home Responsiva
+
+<h3 align='center'>Gestor - Dados</h3>
+<img src='./github/geral.PNG'>
+<h3 align='center'>Gestor - Produtos</h3>
+<img src='./github/loja.PNG'>
+<h3 align='center'>Gestor - Configurar</h3>
+<img src='./github/produtos.PNG'>
+
+<h2 id='BackEnd'>Back-End - API</h2>
+Para a construção do back end utilizei as seguintes tecnologias:
+<ul> 
+  <li>Javascript</li>
+  <li>Typescript</li>
+  <li>NodeJs</li>
+  <li>ExpressJS</li>
+  <li>Cors - Biblioteca</li>
+  <li>jsonwebtoken</li>
+  <li>SQLite</li>
+</ul>
+
+### Funcionalidades
+
+  - [X]Gerenciamento das rotas
+  - [X]Criar, Atualizar e Remover do banco de dados
+  - [X]Validação de dados
+  - [X]JWT Token
+  - [X] Response com controle de erros
+
+A API utiliza dos métodos HTTP e assim controla os dados recebidos.
 
 <h2 id='pre-requisitos'>Pre-requisitos</h2>
 
