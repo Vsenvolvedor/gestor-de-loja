@@ -30,6 +30,7 @@ Para a construção do front end utilizei as seguintes tecnologias:
   - [X] Crie, Remova e atualize os produtos
   - [X] Home Responsiva
 
+
 <h3 align='center'>Gestor - Dados</h3>
 <img src='./github/geral.PNG'>
 <h3 align='center'>Gestor - Produtos</h3>
