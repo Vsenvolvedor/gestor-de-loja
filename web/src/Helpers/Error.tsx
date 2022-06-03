@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import { theme } from "../theme/theme"
 
-
 const ErrorStyle = styled.p`
   font-size: 1.4rem;
   font-family: ${theme.fontFamily.second};

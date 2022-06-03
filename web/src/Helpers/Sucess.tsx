@@ -9,7 +9,7 @@ const SucessMessage = styled.p`
   margin-top: 1rem;
 `
 
-const Sucess = ({message}:{message:string|boolean}) => {
+const Sucess = ({message}:{message:string}) => {
   return (
     <SucessMessage>
       {message}

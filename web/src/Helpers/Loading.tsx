@@ -29,7 +29,6 @@ const LoadingRunning = styled.div`
   animation-iteration-count: infinite;
 `
 
-
 const Loading = () => {
   return (
     <LoadingDiv>
