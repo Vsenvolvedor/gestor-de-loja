@@ -1,11 +1,17 @@
 import React from "react";
 import { USER_DATA } from "./api/user";
-import { getToken } from "./Helpers/getToken";
+
+type userData = {
+  ID: number
+	username: string
+	storename: string
+}
 
 type UserContextType = {
   isLogged: boolean;
   loading: boolean;
-  userData: object | null;
+  userData: userData | null;
+  token: string | null;
   error: string | null;
   logoutUser: () => void;
 }
@@ -13,18 +19,20 @@ type UserContextType = {
 export const UserContext = React.createContext<UserContextType | null>(null)
 
 export const UserProvider = ({children}:any) => {
-  const [userData, setUserData] = React.useState(null)
-  const [isLogged, setIsLogged] = React.useState(false)
-  const [loading, setLoading] = React.useState(false)
-  const [error, setError] = React.useState(null)
+  const [userData, setUserData] = React.useState<userData | null>(null)
+  const [token, setToken] = React.useState<string | null>(null)
+  const [isLogged, setIsLogged] = React.useState<boolean>(false)
+  const [loading, setLoading] = React.useState<boolean>(false)
+  const [error, setError] = React.useState<string | null>(null)
 
   React.useEffect(() => {
     async function refresh() {
       try {
         setLoading(true)
         setError(null)
-        const token = getToken()
+        const token =  window.localStorage.getItem('token')
         if(!token){throw new Error('Não está logado')}
+        setToken(token)
         const {url, options} = USER_DATA(token)
         const response = await fetch(url,options)
         const json = await response.json()
@@ -55,6 +63,7 @@ export const UserProvider = ({children}:any) => {
       isLogged,
       loading,
       userData,
+      token,
       error,
       logoutUser
     }}>
