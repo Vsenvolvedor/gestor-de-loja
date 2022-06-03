@@ -1,13 +1,18 @@
 import Database from '../db/config'
 import { createResponse } from "../helpers/createResponse";
-import { checkItemExists } from '../validation/checkItemExists';
 
 export async function createCateg(id:number,storename:string, name:string) {
   try {
     const db = await Database
-    const isNameExist = await checkItemExists(name,'categories','name')
+    let isNameExist = false
+    await db.each(`SELECT * FROM categories WHERE ownerID = ${id}`,[],(err:string, row:object) =>{
+      const dbUsername = Object.values(row)[2]
+      if(name === dbUsername) {
+        isNameExist = true
+      } 
+    })
     if(!isNameExist) {
-      const a = await db.run(`INSERT INTO categories (
+      await db.run(`INSERT INTO categories (
         ownerID,
         store,
         name

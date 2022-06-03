@@ -23,7 +23,7 @@ const initDb = {
       CREATE TABLE categories(
         ownerID INT,
         store TEXT,
-        name TEXT NOT NULL PRIMARY KEY
+        name TEXT NOT NULL
       )
     `)
   }
