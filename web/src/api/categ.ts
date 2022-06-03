@@ -14,7 +14,11 @@ export function CATEG_DATA(token:string) {
   return options
 }
 
-export function CATEG_CREATE(token:string, body:object) {
+type Categ = {
+  name:string
+}
+
+export function CATEG_CREATE(token:string, body:Categ) {
   const options = {
     url: baseURL,
     options: {

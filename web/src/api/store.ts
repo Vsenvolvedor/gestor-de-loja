@@ -31,7 +31,15 @@ export function PRODUCT_SINGLE_DATA(id:string,token:string) {
   }
 }
 
-export function PRODUCT_CREATE(body:object,token:string) {
+type Product = {
+  name: string
+  value:number
+  qtd: number
+  categ?: Array<string>
+  image?: string
+}
+
+export function PRODUCT_CREATE(body:Product,token:string) {
   return {
     url: baseURL,
     options: {
@@ -45,7 +53,15 @@ export function PRODUCT_CREATE(body:object,token:string) {
   }
 }
 
-export function PRODUCT_UPDATE(body:object,token:string) {
+type ProductUpdate = {
+  name?: string
+  value?:number
+  qtd?: number
+  categ?: Array<string>
+  image?: string
+}
+
+export function PRODUCT_UPDATE(body:ProductUpdate,token:string) {
   return {
     url: baseURL,
     options: {

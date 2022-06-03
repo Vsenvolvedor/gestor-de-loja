@@ -13,7 +13,13 @@ export function USER_DATA(token:string) {
   return options
 }
 
-export function USER_CREATE(body:object) {
+type User = {
+  storename: string;
+  username: string;
+  password: string;
+}
+
+export function USER_CREATE(body:User) {
   const options = {
     url: `${baseURL}/create`,
     options: {
@@ -27,7 +33,12 @@ export function USER_CREATE(body:object) {
   return options
 }
 
-export function USER_LOGIN(body:object) {
+type UserLogin = {
+  username: string;
+  password: string;
+}
+
+export function USER_LOGIN(body:UserLogin) {
   const options = {
     url: `${baseURL}/login`,
     options: {
