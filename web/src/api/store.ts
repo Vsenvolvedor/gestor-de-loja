@@ -32,11 +32,11 @@ export function PRODUCT_SINGLE_DATA(id:string,token:string) {
 }
 
 type Product = {
-  name: string
-  value:number
-  qtd: number
-  categ?: Array<string>
-  image?: string
+  name: string;
+  value: number;
+  qtd: number;
+  categ?: Array<string>;
+  image?: string ;
 }
 
 export function PRODUCT_CREATE(body:Product,token:string) {

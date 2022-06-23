@@ -8,7 +8,7 @@ import useFetch from '../../Hooks/useFetch'
 import { useForm } from '../../Hooks/useForm'
 import { theme } from '../../theme/theme'
 import Button from '../Form/Button'
-import Select from '../Form/Select'
+import Select, { OptionsType } from '../Form/Select'
 import {TitleStyle} from '../Styles/Title'
 
 const FormStyle = styled.form`
@@ -20,10 +20,6 @@ const FormStyle = styled.form`
   width: 300px;
 `
 
-type OptionsType = {
-  name: string
-} 
-  
 interface StoreGestorCategsRemoveProps {
   categs: Array<OptionsType>;
   update: () => void;
@@ -62,7 +58,6 @@ const StoreGestorCategsRemove = ({categs, update}:StoreGestorCategsRemoveProps) 
       setSucess({...sucess, status:false})
     } 
   }
-  console.log(categs)
 
   return (
     <div style={{height:'fit-content'}}>

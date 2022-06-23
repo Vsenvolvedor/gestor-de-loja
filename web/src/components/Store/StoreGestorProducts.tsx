@@ -85,11 +85,11 @@ const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
       if(!productQtd.validate(productQtd.value)) throw ''
       const body = {
         name: product.value.toLowerCase(),
-        value: productValue.value,
-        qtd: productQtd.value,
+        value: Number(productValue.value),
+        qtd: Number(productQtd.value),
         categ,
         image: image ? image : 'false'
-      }
+      } 
       const {url, options} = PRODUCT_CREATE(body,token)
       const {response, json}:any = await request(url,options)
       if(response.ok) {
