@@ -123,8 +123,8 @@ const StoreProductsModal = ({id,active,setModal,refresh}:StoreProductsModalProps
       const body = {
         ID: id,
         name: product.value.toLowerCase(),
-        value: productValue.value,
-        qtd: productQtd.value,
+        value: Number(productValue.value),
+        qtd: Number(productQtd.value),
         categ,
         image
       }
@@ -206,6 +206,7 @@ const StoreProductsModal = ({id,active,setModal,refresh}:StoreProductsModalProps
                 </FlexInputs>
 
                 <ImageInput
+                  image={image}
                   setImage={setImage}
                 />
               </div>
