@@ -6,7 +6,7 @@ import { useForm } from '../../../Hooks/useForm'
 import Button from '../../Form/Button'
 import Input from '../../Form/Input'
 import MainFormTitle from './MainFormTitle'
-import MainLoginSectionStyle from './MainLoginSectionStyle'
+import MainLoginSectionStyle from '../../Styles/MainLoginSectionStyle'
 
 const MainLogin = () => {
   const navigate = useNavigate()
@@ -52,7 +52,7 @@ const MainLogin = () => {
             id='password'
             {...password}
           />
-          {error ? <Error error={error.message} /> : null}
+          {error && <Error error={error.message} />}
           {loading ? 
             (
               <Button marginConfig='1.5rem auto 0 auto' widthConfig='60%' disabled>

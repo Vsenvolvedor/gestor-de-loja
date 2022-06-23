@@ -6,7 +6,7 @@ import { useForm } from '../../../Hooks/useForm'
 import Button from '../../Form/Button'
 import Input from '../../Form/Input'
 import MainFormTitle from './MainFormTitle'
-import MainLoginSectionStyle from './MainLoginSectionStyle'
+import MainLoginSectionStyle from '../../Styles/MainLoginSectionStyle'
 
 const MainCreate = () => {
   const navigate = useNavigate()

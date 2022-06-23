@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components'
-import { theme } from '../../../theme/theme'
+import { theme } from '../../theme/theme'
 
 const animeDown = keyframes`
   to {

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { theme } from '../../../theme/theme'
-import  { SectionStyle, H2Style } from './SectionStyle'
+import  { SectionStyle, H2Style } from '../../Styles/SectionStyle'
 import appImage from '../../../assets/appimg.jpg'
 
 const itemsLi = ['Organize seus produtos','Fácil de usar','Adicione foto','Customize categorias']

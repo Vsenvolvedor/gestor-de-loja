@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import lojaImage from '../../../assets/loja.jpg'
 import { theme } from '../../../theme/theme'
-import { SectionStyle }from './SectionStyle'
+import { SectionStyle }from '../../Styles/SectionStyle'
 
 const PStyle = styled.p`
   font-size: 2.4rem;
