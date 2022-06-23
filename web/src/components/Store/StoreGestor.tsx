@@ -6,22 +6,12 @@ import { getToken } from '../../Helpers/getToken'
 import Loading from '../../Helpers/Loading'
 import useFetch from '../../Hooks/useFetch'
 import { UserContext } from '../../UserContext'
+import { animeLeft, ManagerMenu } from '../Styles/ManagerStyle'
 import SideMenu from './SideMenu'
 import StoreGestorCategsAdd from './StoreGestorCategsAdd'
 import StoreGestorCategsRemove from './StoreGestorCategsRemove'
 import StoreGestorProducts from './StoreGestorProducts'
 
-const animeLeft = keyframes`
-  to {
-    opacity: initial;
-    transform: initial;
-  }
-`
-
-const ManagerMenu = styled.div`
-  display: grid;
-  grid-template-columns: 400px 1fr;
-`
 const ManagerProducts = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;

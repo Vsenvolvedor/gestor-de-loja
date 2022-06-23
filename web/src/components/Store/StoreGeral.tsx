@@ -7,21 +7,10 @@ import Loading from '../../Helpers/Loading'
 import useFetch from '../../Hooks/useFetch'
 import { theme } from '../../theme/theme'
 import { UserContext } from '../../UserContext'
+import { animeLeft, ManagerMenu } from '../Styles/ManagerStyle'
 import SideMenu from './SideMenu'
 
 const StoreGeralInfo = React.lazy(() => import('./StoreGeralInfo'))
-
-const animeLeft = keyframes`
-  to {
-    opacity: initial;
-    transform: initial;
-  }
-`
-
-const ManagerMenu = styled.div`
-  display: grid;
-  grid-template-columns: 400px 1fr;
-`
 
 const ManagerContent = styled.div`
   padding: 3rem;
