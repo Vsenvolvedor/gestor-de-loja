@@ -1,7 +1,12 @@
 import React from "react"
 
+type DataType = {
+  status: number,
+  message: any
+}
+
 const useFetch = () => {
-  const [data, setData] = React.useState<null | object>(null)
+  const [data, setData] = React.useState<null | DataType>(null)
   const [loading, setLoading] = React.useState<boolean>(false)
   const [error, setError] = React.useState<string | null>(null)
 
