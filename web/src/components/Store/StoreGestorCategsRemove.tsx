@@ -9,7 +9,7 @@ import { useForm } from '../../Hooks/useForm'
 import { theme } from '../../theme/theme'
 import Button from '../Form/Button'
 import Select from '../Form/Select'
-import Title from './css/Title'
+import {TitleStyle} from '../Styles/Title'
 
 const FormStyle = styled.form`
   display: flex;
@@ -59,9 +59,9 @@ const StoreGestorCategsRemove = ({categs, update}:StoreGestorCategsRemoveProps) 
 
   return (
     <div style={{height:'fit-content'}}>
-      <Title>
+      <TitleStyle>
         Remover categoria
-      </Title>
+      </TitleStyle>
       <FormStyle onSubmit={handleCategRemoveSubmit}>
         <Select 
           id='removeCategs'

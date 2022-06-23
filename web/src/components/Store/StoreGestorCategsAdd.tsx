@@ -9,7 +9,7 @@ import { useForm } from '../../Hooks/useForm'
 import { theme } from '../../theme/theme'
 import Button from '../Form/Button'
 import Input from '../Form/Input'
-import Title from './css/Title'
+import { TitleStyle } from '../Styles/Title'
 
 const FormStyle = styled.form`
   display: flex;
@@ -50,9 +50,9 @@ const StoreGestorCategsAdd = ({update}:{update: () => void}) => {
 
   return (
     <div style={{height:'fit-content'}}>
-      <Title>
+      <TitleStyle>
         Adicionar categoria
-      </Title>
+      </TitleStyle>
       <FormStyle onSubmit={handleCategAddSubmit}>
         <Input 
           id='categAdd'

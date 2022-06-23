@@ -11,7 +11,7 @@ import Button from '../Form/Button'
 import ImageInput from '../Form/ImageInput'
 import Input from '../Form/Input'
 import Select from '../Form/Select'
-import Title from './css/Title'
+import {TitleStyle} from '../Styles/Title'
 
 const FormWrapper = styled.div`
   grid-column: 1/3;
@@ -113,9 +113,9 @@ const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
 
   return (
     <FormWrapper>
-      <Title>
+      <TitleStyle>
         Adicionar Produto
-      </Title>
+      </TitleStyle>
       <FormStyle onSubmit={handleCreateProductSubmit}>
         <GridInputs>
           <div> 

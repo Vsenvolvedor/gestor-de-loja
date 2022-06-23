@@ -31,7 +31,6 @@ interface SelectProps {
   id: string;
   SelectedLabel?: string | null;
   options: Array<{name:string}> | null;
-  // setValue: (value:string | Array<string>) => void;
   setValue: any
   isValueArray?: boolean
 }
