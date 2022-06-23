@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { CATEG_CREATE } from '../../api/categ'
-import Error from '../../Helpers/Error'
+import ErrorComponent from '../../Helpers/Error'
 import { getToken } from '../../Helpers/getToken'
 import Sucess from '../../Helpers/Sucess'
 import useFetch from '../../Hooks/useFetch'
@@ -20,17 +20,25 @@ const FormStyle = styled.form`
   width: 300px;
 `
 
+type Sucess = {
+  status: boolean;
+  message: string;
+}
+
 const StoreGestorCategsAdd = ({update}:{update: () => void}) => {
-  const { loading, error, request }:any = useFetch()
-  const [sucess, setSucess] = React.useState<boolean | string>(false)
+  const { loading, error, setError, request }:any = useFetch()
+  const [sucess, setSucess] = React.useState<Sucess>({
+    status: false,
+    message: ''
+  })
   const categAdd = useForm()
 
   async function handleCategAddSubmit(e:any) {
     try {
       e.preventDefault()
       const token = getToken()
-      if(!token) throw ''
-      if(!categAdd.value.length || categAdd.value.startsWith(' ')) throw ''
+      if(!token) throw new Error('Token Inválido');
+      if(categAdd?.value.startsWith(' ')) throw new Error('Categoria Inválida');
       const { url, options } = CATEG_CREATE(token,{
         name: categAdd.value
       })
@@ -39,12 +47,13 @@ const StoreGestorCategsAdd = ({update}:{update: () => void}) => {
       if(response.ok) {
         setSucess(json.message)
         setTimeout(() => {
-          setSucess(false)
+          setSucess({...sucess, status:false})
           update()
         }, 1000)
       } else return false
-    } catch(err) {
-      setSucess(false)
+    } catch(err:any) {
+      setError({message:err.message})
+      setTimeout(() => setError(null), 1000)
     } 
   }
 
@@ -58,7 +67,7 @@ const StoreGestorCategsAdd = ({update}:{update: () => void}) => {
           id='categAdd'
           {...categAdd}
         />
-        {error && <Error error={error.message} />}
+        {error && <ErrorComponent error={error.message} />}
         {
           loading ? (
           <Button 
@@ -77,7 +86,7 @@ const StoreGestorCategsAdd = ({update}:{update: () => void}) => {
           </Button>
           )
         }
-        {sucess && <Sucess message={sucess}/>}
+        {sucess.status && <Sucess message={sucess.message}/>}
       </FormStyle>
     </div>
   )

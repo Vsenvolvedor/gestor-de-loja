@@ -12,7 +12,7 @@ import ImageInput from '../Form/ImageInput';
 import Input from '../Form/Input';
 import Select from '../Form/Select';
 import XIcon from '../svgs/XIcon';
-import Title from '../Styles/Title';
+import {TitleStyle} from '../Styles/Title';
 
 const ModalWrapper = styled.div`
   display: flex;
@@ -159,9 +159,9 @@ const StoreProductsModal = ({id,active,setModal,refresh}:StoreProductsModalProps
     <ModalWrapper>
       <Modal>
         <FormWrapper onSubmit={handleUpdateProductSubmit}>
-          <Title>
+          <TitleStyle>
             Atualizar Produto
-          </Title>
+          </TitleStyle>
           <FormStyle>
             <GridInputs>
               <div> 

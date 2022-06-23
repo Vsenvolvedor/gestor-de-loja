@@ -29,7 +29,7 @@ const types = {
 } as TypesProps
 
 export function useForm(type?:string) {
-  const [value, setValue] = React.useState<string | null>(null)
+  const [value, setValue] = React.useState<string>('')
   const [error, setError] = React.useState<string | null>(null)
 
   function onBlur({target}:any) {
@@ -37,7 +37,7 @@ export function useForm(type?:string) {
   }
 
   function validate(text:string | null) {
-    if(!text || text.startsWith(' ')) {
+    if(!text || text.length === 0) {
       setError('Não deixe em branco.')
       return false
     } 
