@@ -4,7 +4,6 @@ import { theme } from "../../theme/theme"
 import Button from "../Form/Button"
 import Logo from "../svgs/Logo"
 
-
 const HeaderDiv = styled.header`
   display: flex;
   justify-content: space-between;

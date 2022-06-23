@@ -9,9 +9,8 @@ import MainLogin from './Main/MainLogin'
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: auto calc(85% - 110px) 110px;
+  grid-template-rows: auto calc(90% - 110px) 110px;
 `
-
 
 const Home = () => {
   return (
