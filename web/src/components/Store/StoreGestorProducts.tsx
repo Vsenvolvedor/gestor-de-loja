@@ -10,7 +10,7 @@ import { theme } from '../../theme/theme'
 import Button from '../Form/Button'
 import ImageInput from '../Form/ImageInput'
 import Input from '../Form/Input'
-import Select from '../Form/Select'
+import Select, { OptionsType } from '../Form/Select'
 import {TitleStyle} from '../Styles/Title'
 
 const FormWrapper = styled.div`
@@ -62,13 +62,8 @@ const SpanCategs = styled.span`
   }
 `
 
-type Categs = {
-  status?: number,
-  message?: Array<string>
-}
-
 interface StoreGestorCategsRemoveProps {
-  categs: Categs | null
+  categs: Array<OptionsType>
 }
 
 const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
@@ -128,7 +123,7 @@ const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
               label='Categorias'
               id='categs'
               SelectedLabel='Selecione a categoria'
-              options={categs && categs.message as Array<any>}
+              options={categs && categs}
               setValue={setCateg}
               isValueArray={true}
             />

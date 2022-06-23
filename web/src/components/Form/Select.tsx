@@ -26,7 +26,7 @@ const SelectStyled = styled.select`
   }
 `
 
-type OptionsType = {
+export type OptionsType = {
   name: string
 } 
   
