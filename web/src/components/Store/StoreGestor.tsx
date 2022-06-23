@@ -57,9 +57,9 @@ const StoreGestor = () => {
         <SideMenu />
       </div>
       <ManagerProducts>
-        <StoreGestorProducts categs={data}  />
+        <StoreGestorProducts categs={data && data?.message}  />
         <StoreGestorCategsAdd update={getCategs} />
-        <StoreGestorCategsRemove categs={data} update={getCategs} />
+        <StoreGestorCategsRemove categs={data && data?.message} update={getCategs} />
       </ManagerProducts>
     </ManagerMenu>
   )

@@ -25,12 +25,16 @@ const SelectStyled = styled.select`
     box-shadow: 1px 1px 4px rgba(0,0,0,.1);
   }
 `
+
+type OptionsType = {
+  name: string
+} 
   
 interface SelectProps {
   label?: string;
   id: string;
   SelectedLabel?: string | null;
-  options: Array<{name:string}> | null;
+  options: Array<OptionsType>;
   setValue: any
   isValueArray?: boolean
 }

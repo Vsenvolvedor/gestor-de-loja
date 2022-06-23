@@ -45,7 +45,7 @@ const StoreGestorCategsAdd = ({update}:{update: () => void}) => {
   
       const {response, json}:any = await request(url,options)
       if(response.ok) {
-        setSucess(json.message)
+        setSucess({...sucess, message:json.message})
         setTimeout(() => {
           setSucess({...sucess, status:false})
           update()

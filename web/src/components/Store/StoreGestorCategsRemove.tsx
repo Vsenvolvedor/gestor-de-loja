@@ -20,21 +20,27 @@ const FormStyle = styled.form`
   width: 300px;
 `
 
-type Categs = {
-  status?: number,
-  message?: Array<string>
+type OptionsType = {
+  name: string
 } 
-
+  
 interface StoreGestorCategsRemoveProps {
-  categs: Categs | null
-  update: () => void 
+  categs: Array<OptionsType>;
+  update: () => void;
+}
+
+type Sucess = {
+  status: boolean;
+  message: string;
 }
 
 const StoreGestorCategsRemove = ({categs, update}:StoreGestorCategsRemoveProps) => {
   const {loading, error, request }:any = useFetch()
-  const [selectValue, setSelectValue] = React.useState<string | Array<string>>('')
-  const [sucess, setSucess] = React.useState<boolean | string>(false)
- 
+  const [selectValue, setSelectValue] = React.useState<string>('')
+  const [sucess, setSucess] = React.useState<Sucess>({
+    status: false,
+    message: ''
+  })
 
   async function handleCategRemoveSubmit(e:any) {
     try {
@@ -46,16 +52,17 @@ const StoreGestorCategsRemove = ({categs, update}:StoreGestorCategsRemoveProps) 
   
       const { response, json }:any = await request(url,options)
       if(response.ok) {
-        setSucess(json.message)
+        setSucess({...sucess, message:json.message})
         setTimeout(() => {
-          setSucess(false)
+          setSucess({...sucess, status:false})
           update()
         }, 1000)
       } else return false
     } catch(err) {
-      setSucess(false)
+      setSucess({...sucess, status:false})
     } 
   }
+  console.log(categs)
 
   return (
     <div style={{height:'fit-content'}}>
@@ -66,7 +73,7 @@ const StoreGestorCategsRemove = ({categs, update}:StoreGestorCategsRemoveProps) 
         <Select 
           id='removeCategs'
           SelectedLabel='Selecione a categoria'
-          options={categs && categs.message}
+          options={categs && categs}
           setValue={setSelectValue}
         />
      
@@ -89,7 +96,7 @@ const StoreGestorCategsRemove = ({categs, update}:StoreGestorCategsRemoveProps) 
           </Button>
           )
         }
-        {sucess && <Sucess message={sucess}/>}
+        {sucess.status && <Sucess message={sucess.message}/>}
       </FormStyle>
     </div>
   )
