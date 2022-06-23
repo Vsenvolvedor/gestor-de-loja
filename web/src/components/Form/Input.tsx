@@ -1,14 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
 import { ErrorStyle } from "../Styles/ErrorStyle";
-
-const LabelStyled = styled.label`
-  display: block;
-  font-size: 1.8rem;
-  font-family: ${theme.fontFamily.second};
-  color: ${theme.colors.color05};
-  margin-bottom: .5rem;
-`
+import { LabelStyled } from "../Styles/LabelStyle";
 
 const InputStyled = styled.input`
   display: block;
