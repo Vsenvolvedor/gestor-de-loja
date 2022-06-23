@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import { PRODUCT_DELETE } from '../../api/store'
 import { getToken } from '../../Helpers/getToken'
@@ -32,7 +31,7 @@ const DeleteButton = ({id, refresh}:DeleteButtonProps) => {
       const token = getToken()
       if(!token) return false
       const {url, options} = PRODUCT_DELETE(id,token)
-      const {response, json}:any = await request(url,options)
+      await request(url,options)
   
       refresh()
     } else return
