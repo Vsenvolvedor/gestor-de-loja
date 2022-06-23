@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
+import { ErrorStyle } from "../Styles/ErrorStyle";
 
 const LabelStyled = styled.label`
   display: block;
@@ -28,13 +29,6 @@ const InputStyled = styled.input`
     background-color: ${theme.colors.color01};
     box-shadow: 1px 1px 4px rgba(0,0,0,.1);
   }
-`
-
-const ErrorStyle = styled.p`
-  font-size: 1.4rem;
-  font-family: ${theme.fontFamily.second};
-  color: #dd0000;
-  margin-bottom: 1rem;
 `
 
 interface InputProps {

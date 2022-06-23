@@ -3,13 +3,13 @@ import { ImageInputStyle, ImageLabelStyle, ImagePStyle, ImageWrapperStyle, Local
 import Photo from '../svgs/Photo'
 
 interface ImageInputProps {
-  setImage: (value:string) => void
+  image: string;
+  setImage: (value:string) => void;
 }
 
-const ImageInput = ({setImage}:ImageInputProps) => {
-  const imageRef = React.useRef<any>()
-  const [hasImage, setHasImage] = React.useState<boolean>(false)
-  const [localImage, setLocalImage] = React.useState<string>('')
+const ImageInput = ({image,setImage}:ImageInputProps) => {
+  const imageRef = React.useRef<any>();
+  const [hasImage, setHasImage] = React.useState<boolean>(false);
 
   function handleImage() {
     const file = imageRef.current.files[0]
@@ -17,7 +17,7 @@ const ImageInput = ({setImage}:ImageInputProps) => {
     const canvas = document.createElement('canvas')
     canvas.width = 180
     canvas.height = 120
-    const ctx =canvas.getContext('2d')
+    const ctx = canvas.getContext('2d')
     ctx?.clearRect(0,0,canvas.width,canvas.height)
     const image = new Image()
     image.src = url
@@ -25,7 +25,7 @@ const ImageInput = ({setImage}:ImageInputProps) => {
       ctx?.clearRect(0,0,canvas.width,canvas.height)
       ctx?.drawImage(image, 0, 0, 200, 120)
       const dataURL = canvas.toDataURL('image/png',.5)
-      setLocalImage(dataURL)
+
       setImage(dataURL)
       setHasImage(true)
     }
@@ -33,7 +33,6 @@ const ImageInput = ({setImage}:ImageInputProps) => {
 
   function resetImage() {
     setImage('')
-    setLocalImage('')
     setHasImage(false)
     imageRef.current.files[0] = ''
     imageRef.current.value = ''
@@ -43,7 +42,7 @@ const ImageInput = ({setImage}:ImageInputProps) => {
     <ImageWrapperStyle>
       {hasImage ? (
         <ImageLabelStyle onClick={resetImage} >
-          <LocalImage src={localImage}/>
+          <LocalImage src={image}/>
           <ImagePStyle>Imagem selecionada</ImagePStyle>
         </ImageLabelStyle>
       ):(

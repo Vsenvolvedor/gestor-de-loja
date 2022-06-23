@@ -72,7 +72,7 @@ interface StoreGestorCategsRemoveProps {
 }
 
 const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
-  const {data,loading, error, request}:any = useFetch()
+  const {loading, error, request}:any = useFetch()
   const [status, setStatus] = React.useState<string>('')
   const product = useForm()
   const productValue = useForm('number')
@@ -160,6 +160,7 @@ const StoreGestorProducts = ({categs}:StoreGestorCategsRemoveProps) => {
             </FlexInputs>
 
             <ImageInput
+              image={image}
               setImage={setImage}
             />
           </div>
