@@ -1,7 +1,7 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { PRODUCT_DATA } from '../../api/store'
-import AlertError from '../../Helpers/AlertError'
+import ProtectedRoute from '../../Helpers/ProtectedRoute'
 import { getToken } from '../../Helpers/getToken'
 import Loading from '../../Helpers/Loading'
 import useFetch from '../../Hooks/useFetch'
@@ -49,7 +49,7 @@ const StoreGeral = () => {
 
   
   if(userContext?.loading || loading) return <Loading />
-  if(userContext?.error) return <AlertError error={userContext?.error} />
+  if(userContext?.error) return <ProtectedRoute />
   if(!data) return null
 
   return (

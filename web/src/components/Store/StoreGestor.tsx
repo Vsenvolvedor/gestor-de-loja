@@ -1,7 +1,7 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { CATEG_DATA } from '../../api/categ'
-import AlertError from '../../Helpers/AlertError'
+import ProtectedRoute from '../../Helpers/ProtectedRoute'
 import { getToken } from '../../Helpers/getToken'
 import Loading from '../../Helpers/Loading'
 import useFetch from '../../Hooks/useFetch'
@@ -40,7 +40,7 @@ const StoreGestor = () => {
   }, [])
 
   if(userContext?.loading || loading) return <Loading />
-  if(userContext?.error) return <AlertError error={userContext?.error} />
+  if(userContext?.error) return <ProtectedRoute />
   return (
     <ManagerMenu>
       <div>

@@ -1,11 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const AlertError = ({error}:{error:string}) => {
+const AlertError = () => {
   const navigate = useNavigate()
 
   React.useEffect(() => {
-    alert(error)
     navigate('/')
   }, [])
 
