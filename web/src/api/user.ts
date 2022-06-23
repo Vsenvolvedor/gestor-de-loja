@@ -14,9 +14,9 @@ export function USER_DATA(token:string) {
 }
 
 type User = {
-  storename: string;
-  username: string;
-  password: string;
+  storename: string | null;
+  username: string | null;
+  password: string | null;
 }
 
 export function USER_CREATE(body:User) {
@@ -34,8 +34,8 @@ export function USER_CREATE(body:User) {
 }
 
 type UserLogin = {
-  username: string;
-  password: string;
+  username: string | null;
+  password: string | null;
 }
 
 export function USER_LOGIN(body:UserLogin) {
