@@ -23,7 +23,7 @@ export async function updateProduct(productNewValues:updateProductProps) {
     values.forEach(async (item) => {
       if(!item) return isDbUpdated = false
       isDbUpdated = true
-      const result = await db.run(`
+      await db.run(`
       UPDATE products 
       SET ${item[0]} = "${item[1]}"
       WHERE ID=${productNewValues.ID} AND ownerID=${productNewValues.ownerID}

@@ -45,19 +45,19 @@ const categDelete = async (req:Request,res:express.Response) => {
   } catch(err:any) {
     res.status(400).send(err.message);
   }
-}
+};
 
 
-const routes = express.Router()
+const routes = express.Router();
 
-routes.use('/', isLogged)
+routes.use('/', isLogged);
 
 routes.route('/')
 .get(categData)
-.post(categCreate)
+.post(categCreate);
 
 routes.route('/:name')
-.delete(categDelete)
+.delete(categDelete);
 
 
-export default routes
+export default routes;
