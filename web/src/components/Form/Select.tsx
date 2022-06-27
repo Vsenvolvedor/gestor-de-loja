@@ -48,9 +48,8 @@ const Select = ({label,id,SelectedLabel,options, setValue,isValueArray}:SelectPr
         defaultValue={'DEFAULT'} 
         onChange={isValueArray?
         ({target}) => setValue((prev:any) => {
-          const exist = prev.some((item:string) => item === target.value)
-          const items = exist ? [...prev] : [...prev,target.value]
-          return items
+          const items = new Set([...prev, target.value])
+          return Array.from(items);
         })
           :
         ({target}) => setValue(target.value)}
